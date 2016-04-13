@@ -8,19 +8,14 @@ import es.uned.lsi.eped.DataStructures.*;
 public class AcademiaS implements AcademiaIF {
 
 	private TreeIF<DoctorIF> arbol;
-	private int size;
+	private  int size;
 	
-	public AcademiaS(DoctorS fundador){
-		
-		arbol=new Tree<>(fundador);
-		size++;
-		
-		
-	}
+	
 	
 	public AcademiaS(){
 		
 		arbol=new Tree<>();
+		size++;
 	}
 	public void setFounder(DoctorIF doctor){
 		
@@ -198,7 +193,15 @@ public class AcademiaS implements AcademiaIF {
 				
 			}else{
 				
-				/////////////////
+				ListIF<TreeIF<DoctorIF>> hijos=tree.getChildren();
+				IteratorIF<TreeIF<DoctorIF>> it=hijos.iterator();
+				
+					while(it.hasNext()){
+						TreeIF<DoctorIF> subTree=it.getNext();
+						
+						AñadeRelacionSupervision(subTree, student, supervisor);
+					}
+				
 				
 			}
 			

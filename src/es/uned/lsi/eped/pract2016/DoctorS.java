@@ -26,52 +26,80 @@ public class DoctorS implements DoctorIF {
 	}
 
 	public DoctorS getSupervisor(){
-		
-		AcademiaS acad = academia;
-		TreeIF<DoctorIF> c=acad.GetTree();
 	
-		return (DoctorS) c.getRoot();
-	
+		TreeIF<DoctorIF> c=academia.GetTree();
 
+		return  (DoctorS) buscaDoctor(c, this);
+
+	}
 	
+	private DoctorIF buscaDoctor(TreeIF<DoctorIF> tree, DoctorIF doctor){
+		
+		
+		if(doctor.equals(tree.getRoot())){
+			
+			return null;
+		}else{
+			ListIF<TreeIF<DoctorIF>> hijos=tree.getChildren();
+			
+			IteratorIF<TreeIF<DoctorIF>> it=hijos.iterator();
+			
+			while(it.hasNext()){
+				
+				TreeIF<DoctorIF> subarbol=it.getNext();
+				
+				if(subarbol.getRoot().equals(doctor)){
+					
+					return subarbol.getRoot();
+					 
+				}else{
+					
+					buscaDoctor(subarbol, doctor);
+				}
+			}
+			
+		}
+		return null;
 	}
 	
 	@Override
 	public CollectionIF<DoctorIF> getAncestors(int generations) {
+
+		TreeIF<DoctorIF> tree=new Tree<DoctorIF>(this);
+		ListIF<DoctorIF> colec=new List<>();
+		TreeIF<DoctorIF> arbol=new Tree<>();
+		arbol= academia.GetTree();
 		
-		CollectionIF<DoctorIF> colec=new List<>();
-		
-		
-		
-		TreeIF<DoctorS> arbol=new Tree<DoctorS>();
-		
-		
-		
-		return colec;
+		if(this.equals(arbol.getRoot())){
+			
+			return null;
+		}else{
+			
+			return Antecesores(generations, this, arbol, colec);
+		}
+	
 	}
-	
-	
-	private ListIF<DoctorIF> GeneracionAntecesores (TreeIF<DoctorS> arbol, int num, ListIF<DoctorIF> colec){
-		
-		
-		
-			if(arbol.getRoot().equals(academia.getFounder()) && num>0){
+	private CollectionIF<DoctorIF> Antecesores(int generations, DoctorIF doctor, TreeIF<DoctorIF> tree, ListIF<DoctorIF> list){
+			
+			if(generations == 1){
 				
-				colec.insert(arbol.getRoot(), num);
+				list.set(0, doctor);
 				
+				return list;
+			}else{
+				
+				doctor=tree.getRoot();
+				/////// FALTARIA LA PARTE RECURSIVA EN ESTE PUNTO PARA QUE VAYA SUBIENDO
+				///DE PADRE A PADRE HASTA QUE generations==1
 				
 			}
+			
+			
+			return list;
+		}
 	
-			
-			
-			
-		
 	
-		
-		
-		return null;
-		
-	}
+
 
 	@Override
 	public CollectionIF<DoctorIF> getStudents() {
