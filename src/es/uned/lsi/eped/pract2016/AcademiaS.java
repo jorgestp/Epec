@@ -123,7 +123,7 @@ public class AcademiaS implements AcademiaIF {
 				TreeIF<DoctorIF> subarbol=it.getNext();
 				if(subarbol.getRoot().equals(sup)){
 					
-					arbol.addChild(subarbol.getChildren().size()+1, new Tree<DoctorIF>(newdoctor));
+					subarbol.addChild(subarbol.getChildren().size()+1, new Tree<DoctorIF>(newdoctor));
 				}else{
 					
 					 Encuentra(subarbol, sup, newdoctor);
