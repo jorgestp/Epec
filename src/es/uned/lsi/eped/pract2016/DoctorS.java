@@ -29,38 +29,50 @@ public class DoctorS implements DoctorIF {
 	
 		TreeIF<DoctorIF> c=academia.GetTree();
 
-		return  (DoctorS) buscaDoctor(c, this);
+		return (DoctorS) BuscarPadre(c, this);
 
 	}
 	
-	private DoctorIF buscaDoctor(TreeIF<DoctorIF> tree, DoctorIF doctor){
+	private DoctorIF BuscarPadre(TreeIF<DoctorIF> arbolActual, DoctorIF doctor){
 		
-		
-		if(doctor.equals(tree.getRoot())){
+		if(arbolActual.getRoot().equals(doctor)){
 			
 			return null;
 		}else{
-			ListIF<TreeIF<DoctorIF>> hijos=tree.getChildren();
 			
-			IteratorIF<TreeIF<DoctorIF>> it=hijos.iterator();
-			
-			while(it.hasNext()){
+			ListIF<TreeIF<DoctorIF>> list=arbolActual.getChildren();
+			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
+			if(EstaEnLista(list, it, doctor)){
 				
-				TreeIF<DoctorIF> subarbol=it.getNext();
+				return arbolActual.getRoot();
+			}else{
 				
-				if(subarbol.getRoot().equals(doctor)){
+				while(it.hasNext()){
 					
-					return subarbol.getRoot();
-					 
-				}else{
-					
-					buscaDoctor(subarbol, doctor);
+					TreeIF<DoctorIF>subArbol=it.getNext();
+					BuscarPadre(subArbol, doctor);
 				}
 			}
 			
 		}
+		
 		return null;
 	}
+	
+	private boolean EstaEnLista(ListIF<TreeIF<DoctorIF>> list, IteratorIF<TreeIF<DoctorIF>> it, DoctorIF doctor){
+		
+		while(it.hasNext()){
+			
+			TreeIF<DoctorIF> hijos=it.getNext();
+			if(hijos.getRoot().equals(doctor)){
+				
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
 	
 	@Override
 	public CollectionIF<DoctorIF> getAncestors(int generations) {

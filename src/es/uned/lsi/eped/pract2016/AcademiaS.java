@@ -14,7 +14,7 @@ public class AcademiaS implements AcademiaIF {
 	
 	public AcademiaS(){
 		
-		arbol=new Tree<>();
+		arbol=new Tree<DoctorIF>();
 		size++;
 	}
 	public void setFounder(DoctorIF doctor){
@@ -103,30 +103,36 @@ public class AcademiaS implements AcademiaIF {
 	@Override
 	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
 		
-		arbol.addChild(Encuentra(arbol,supervisor).getChildren().size()+1, new Tree<DoctorIF>(newDoctor));	
+			Encuentra(arbol, supervisor, newDoctor);
 		
 		size++;
 	
 	}
 	
-	private TreeIF<DoctorIF> Encuentra(TreeIF<DoctorIF> tree,DoctorIF sup){
+	private void Encuentra(TreeIF<DoctorIF> tree,DoctorIF sup, DoctorIF newdoctor){
 		
 		if(tree.getRoot().equals(sup)){
 			
-			return tree;
+			arbol.addChild(tree.getChildren().size()+1, new Tree<DoctorIF>(newdoctor));
 		}else{
+			
 			
 			ListIF<TreeIF<DoctorIF>> list=tree.getChildren();
 			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
 			while(it.hasNext()){
 				TreeIF<DoctorIF> subarbol=it.getNext();
-				 return Encuentra(subarbol, sup);
+				if(subarbol.getRoot().equals(sup)){
+					
+					arbol.addChild(subarbol.getChildren().size()+1, new Tree<DoctorIF>(newdoctor));
+				}else{
+					
+					 Encuentra(subarbol, sup, newdoctor);
+				}
+				 
 			}
 		}
 		
-		
-		return tree;
-		
+	
 	}
 	
 	
@@ -214,8 +220,7 @@ public class AcademiaS implements AcademiaIF {
 		return null;
 	}
 
-	
-		
+
 	
 
 }
