@@ -113,7 +113,7 @@ public class AcademiaS implements AcademiaIF {
 		
 		if(tree.getRoot().equals(sup)){
 			
-			arbol.addChild(tree.getChildren().size()+1, new Tree<DoctorIF>(newdoctor));
+			tree.addChild(tree.getChildren().size()+1, new Tree<DoctorIF>(newdoctor));
 		}else{
 			
 			
