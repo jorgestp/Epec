@@ -191,20 +191,26 @@ public class AcademiaS implements AcademiaIF {
 	
 	private void AñadeRelacionSupervision(TreeIF<DoctorIF> tree, DoctorIF student, DoctorIF supervisor){
 			
+			ListIF<TreeIF<DoctorIF>> hijos=tree.getChildren();
+			
 			if(tree.getRoot().equals(supervisor)){
 				
-				ListIF<TreeIF<DoctorIF>> hijos=tree.getChildren();
+				
 				
 				hijos.set(hijos.size()+1, new Tree<DoctorIF>(student));
 				
 			}else{
 				
-				ListIF<TreeIF<DoctorIF>> hijos=tree.getChildren();
+				
 				IteratorIF<TreeIF<DoctorIF>> it=hijos.iterator();
 				
 					while(it.hasNext()){
 						TreeIF<DoctorIF> subTree=it.getNext();
 						
+						if(subTree.getRoot().equals(supervisor)){
+							
+							
+						}
 						AñadeRelacionSupervision(subTree, student, supervisor);
 					}
 				

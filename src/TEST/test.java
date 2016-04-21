@@ -33,7 +33,7 @@ public class test {
 		
 		academia.addDoctor(doctor5, doctor4);
 		
-		System.out.println(doctor7.getSupervisor());
+	//	System.out.println(doctor7.getSupervisor());
 		
 		
 		TreeIF<DoctorIF> arbol=academia.GetTree();
@@ -45,10 +45,25 @@ public class test {
 			
 			TreeIF<DoctorIF> sigu=it.getNext();
 			
-			System.out.println(sigu.getRoot());
+			System.out.print(sigu.getRoot()+ ",");
 		}
 		
 
+		
+		academia.addSupervision(doctor5, doctor3);
+		
+		
+//		TreeIF<DoctorIF> arbol1=academia.GetTree();
+//		ListIF<TreeIF<DoctorIF>> lista1=arbol.getChildren();
+//		
+//		IteratorIF<TreeIF<DoctorIF>> it1=lista.iterator();
+//		
+//		while(it1.hasNext()){
+//			
+//			TreeIF<DoctorIF> sigu=it1.getNext();
+//			
+//			System.out.print(sigu.getRoot()+ ",");
+//		}
 	}
 
 }
