@@ -115,14 +115,39 @@ public class DoctorS implements DoctorIF {
 
 	@Override
 	public CollectionIF<DoctorIF> getStudents() {
-		ListIF<DoctorIF> lista = null;
-		
-		AcademiaS academia = null;
-		TreeIF<DoctorIF> arbol=academia.GetTree();
-		
-		
-		return lista ;
+		TreeIF<DoctorIF> arbol=academia.GetTree();	
+		return hijos(arbol, this);
+	
 	}
+		private CollectionIF<DoctorIF> hijos(TreeIF<DoctorIF> tree, DoctorIF padre){
+			
+			ListIF<DoctorIF> lista=new List<DoctorIF>();
+			if(tree.getRoot().equals(padre)){
+				
+				ListIF<TreeIF<DoctorIF>> list=tree.getChildren();
+				
+				IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
+				while(it.hasNext()){
+					
+					TreeIF<DoctorIF> hijos=it.getNext();
+					lista.insert(hijos.getRoot(), 1);
+				}
+				return lista;
+			}
+			
+			ListIF<TreeIF<DoctorIF>> list=tree.getChildren();
+			
+			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
+				
+				while(it.hasNext()){
+					
+					TreeIF<DoctorIF> arbol=it.getNext();
+					
+					return hijos(arbol,padre);
+				}
+
+			return lista;
+		}
 
 	@Override
 	public CollectionIF<DoctorIF> getDescendants(int generations) {
@@ -138,7 +163,7 @@ public class DoctorS implements DoctorIF {
 
 	public String toString()	{
 		
-		return " " + id;
+		return "" + id;
 	}
 	
 

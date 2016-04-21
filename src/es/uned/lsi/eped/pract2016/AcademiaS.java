@@ -62,13 +62,7 @@ public class AcademiaS implements AcademiaIF {
 	@Override
 	public void clear() {
 		
-		DoctorIF root=arbol.getRoot();
-		
-		root=null;
-		
-		ListIF<TreeIF<DoctorIF>> hijos=arbol.getChildren();
-		hijos=null;
-		size=0;
+		arbol.setRoot(null);
 		
 	}
 
@@ -103,13 +97,13 @@ public class AcademiaS implements AcademiaIF {
 	@Override
 	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
 		
-			Encuentra(arbol, supervisor, newDoctor);
+			encuentra(arbol, supervisor, newDoctor);
 		
 		size++;
 	
 	}
 	
-	private void Encuentra(TreeIF<DoctorIF> tree,DoctorIF sup, DoctorIF newdoctor){
+	private void encuentra(TreeIF<DoctorIF> tree,DoctorIF sup, DoctorIF newdoctor){
 		
 		if(tree.getRoot().equals(sup)){
 			
@@ -126,7 +120,7 @@ public class AcademiaS implements AcademiaIF {
 					subarbol.addChild(subarbol.getChildren().size()+1, new Tree<DoctorIF>(newdoctor));
 				}else{
 					
-					 Encuentra(subarbol, sup, newdoctor);
+					 encuentra(subarbol, sup, newdoctor);
 				}
 				 
 			}
@@ -137,9 +131,9 @@ public class AcademiaS implements AcademiaIF {
 	
 	
 	
-	public void Mostrar(AcademiaS academia){	
+	public void mostrar(AcademiaS academia){	
 			
-		ImprimiRoot(arbol);	
+		imprimiRoot(arbol);	
 		ListIF<TreeIF<DoctorIF>> list=arbol.getChildren();	
 		IteratorIF<TreeIF<DoctorIF>> it=list.iterator();	
 		while(it.hasNext()){		
@@ -169,7 +163,7 @@ public class AcademiaS implements AcademiaIF {
 		}
 	}
 		
-	private void ImprimiRoot(TreeIF<DoctorIF> tree){
+	private void imprimiRoot(TreeIF<DoctorIF> tree){
 		
 	DoctorS padre=(DoctorS) tree.getRoot();
 		
@@ -185,11 +179,11 @@ public class AcademiaS implements AcademiaIF {
 	public void addSupervision(DoctorIF student, DoctorIF supervisor) {
 		
 		
-			AñadeRelacionSupervision(arbol, student, supervisor);
+			anadeRelacionSupervision(arbol, student, supervisor);
 			
 	}
 	
-	private void AñadeRelacionSupervision(TreeIF<DoctorIF> tree, DoctorIF student, DoctorIF supervisor){
+	private void anadeRelacionSupervision(TreeIF<DoctorIF> tree, DoctorIF student, DoctorIF supervisor){
 			
 			ListIF<TreeIF<DoctorIF>> hijos=tree.getChildren();
 			
@@ -197,7 +191,7 @@ public class AcademiaS implements AcademiaIF {
 				
 				
 				
-				hijos.set(hijos.size()+1, new Tree<DoctorIF>(student));
+				hijos.insert(new Tree<DoctorIF>(student), hijos.size()+1);
 				
 			}else{
 				
@@ -211,7 +205,7 @@ public class AcademiaS implements AcademiaIF {
 							
 							
 						}
-						AñadeRelacionSupervision(subTree, student, supervisor);
+						anadeRelacionSupervision(subTree, student, supervisor);
 					}
 				
 				

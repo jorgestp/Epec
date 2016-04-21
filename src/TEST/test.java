@@ -46,13 +46,14 @@ public class test {
 			TreeIF<DoctorIF> sigu=it.getNext();
 			
 			System.out.print(sigu.getRoot()+ ",");
+			
 		}
 		
-
+		System.out.println();
 		
-		academia.addSupervision(doctor5, doctor3);
-		
-		
+//		academia.addSupervision(doctor7, doctor2);
+//		
+//		
 //		TreeIF<DoctorIF> arbol1=academia.GetTree();
 //		ListIF<TreeIF<DoctorIF>> lista1=arbol.getChildren();
 //		
@@ -63,7 +64,26 @@ public class test {
 //			TreeIF<DoctorIF> sigu=it1.getNext();
 //			
 //			System.out.print(sigu.getRoot()+ ",");
+//			
 //		}
+		
+		System.out.println();
+		
+		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor2.getStudents();
+		
+		IteratorIF<DoctorIF> iterator=list.iterator();
+		
+		while(iterator.hasNext()){
+			
+			DoctorS doc= (DoctorS) iterator.getNext();
+			
+			System.out.print(doc.getId()+ ", ");
+			
+		}
+		
+		System.out.println();
 	}
+	
+	
 
 }
