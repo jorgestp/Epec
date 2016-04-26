@@ -25,38 +25,49 @@ public class DoctorS implements DoctorIF {
 		return academia;
 	}
 
+	//FUNCIONA a medias
 	public DoctorS getSupervisor(){
 	
 		TreeIF<DoctorIF> c=academia.GetTree();
 
-		return (DoctorS) BuscarPadre(c, this);
+		return (DoctorS) buscarPadre(c, this);
 
 	}
 	
-	private DoctorIF BuscarPadre(TreeIF<DoctorIF> arbolActual, DoctorIF doctor){
+	private DoctorIF buscarPadre(TreeIF<DoctorIF> arbolActual, DoctorIF doctor){
 		
+		DoctorIF doc = null;
 		if(arbolActual.getRoot().equals(doctor)){
 			
-			return null;
+			
+			return doctor;
+			
 		}else{
 			
 			ListIF<TreeIF<DoctorIF>> list=arbolActual.getChildren();
 			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
 			if(EstaEnLista(list, it, doctor)){
 				
-				return arbolActual.getRoot();
+					doc=arbolActual.getRoot();
+				return doc;
+				
 			}else{
+				
+				it.reset();
 				
 				while(it.hasNext()){
 					
 					TreeIF<DoctorIF>subArbol=it.getNext();
-					BuscarPadre(subArbol, doctor);
+					 doc=subArbol.getRoot();
+					 doc= buscarPadre(subArbol, doctor);
+					
+					
 				}
 			}
 			
 		}
 		
-		return null;
+		return doc;
 	}
 	
 	private boolean EstaEnLista(ListIF<TreeIF<DoctorIF>> list, IteratorIF<TreeIF<DoctorIF>> it, DoctorIF doctor){
@@ -77,8 +88,7 @@ public class DoctorS implements DoctorIF {
 	@Override
 	public CollectionIF<DoctorIF> getAncestors(int generations) {
 
-		TreeIF<DoctorIF> tree=new Tree<DoctorIF>(this);
-		ListIF<DoctorIF> colec=new List<>();
+		ListIF<DoctorIF> colec=new List<DoctorIF>();
 		TreeIF<DoctorIF> arbol=new Tree<>();
 		arbol= academia.GetTree();
 		
@@ -87,27 +97,36 @@ public class DoctorS implements DoctorIF {
 			return null;
 		}else{
 			
-			return Antecesores(generations, this, arbol, colec);
+			return antecesores(generations, this, arbol);
 		}
 	
 	}
-	private CollectionIF<DoctorIF> Antecesores(int generations, DoctorIF doctor, TreeIF<DoctorIF> tree, ListIF<DoctorIF> list){
+	private ListIF<DoctorIF> antecesores(int generations, DoctorIF doctor, TreeIF<DoctorIF> tree){
 			
-			if(generations == 1){
+			ListIF<DoctorIF> antece=new List<DoctorIF>();
+		
+		
+			if(tree.getRoot().equals(doctor)){
 				
-				list.set(0, doctor);
+				return null;
 				
-				return list;
+			}
+			if(generations==0){
+				
+				antece.insert(this.getSupervisor(), antece.size());
+				return antece;
 			}else{
 				
-				doctor=tree.getRoot();
-				/////// FALTARIA LA PARTE RECURSIVA EN ESTE PUNTO PARA QUE VAYA SUBIENDO
-				///DE PADRE A PADRE HASTA QUE generations==1
+				DoctorS doc= ((DoctorS) doctor).getSupervisor();
+				
+				antece= antecesores(generations-1, doc, tree);
+				antece.insert(doc, antece.size());
+				return antece;
+				
 				
 			}
 			
-			
-			return list;
+
 		}
 	
 	
@@ -151,13 +170,100 @@ public class DoctorS implements DoctorIF {
 
 	@Override
 	public CollectionIF<DoctorIF> getDescendants(int generations) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		TreeIF<DoctorIF> tree=academia.GetTree();
+		
+		 TreeIF<DoctorIF> arbol=buscaDoctor(this, tree);
+		
+		
+		return descendientes( generations, arbol);
 	}
+	
+	private ListIF<DoctorIF> descendientes( int generations, TreeIF<DoctorIF> tree){
+		
+		ListIF<DoctorIF> lista=new List<DoctorIF>();
+		
+		if(generations==0){
+			
+			return lista;
+		}
+		if(tree.isLeaf()){
+			
+			return lista;
+		}
+		
+		ListIF<TreeIF<DoctorIF>> listaHijos=tree.getChildren();
+		
+		incluirEnLista(listaHijos, lista, generations-1);
+		
+		
+		IteratorIF<TreeIF<DoctorIF>> it=listaHijos.iterator();
+		
+		while(it.hasNext()){
+			
+			TreeIF<DoctorIF> subarbol=it.getNext();
+
+			
+			lista=descendientes(generations -1, subarbol);
+			
+		}
+		
+		return lista;
+	}
+	
+	private ListIF<DoctorIF> incluirEnLista(ListIF<TreeIF<DoctorIF>> hijos, ListIF<DoctorIF> lista, int generations){
+		
+		
+		TreeIF<DoctorIF> sub = null;
+		if(generations==0){
+			
+			return lista;
+		}
+		IteratorIF<TreeIF<DoctorIF>> it=hijos.iterator();
+		
+		while(it.hasNext()){
+			
+			 sub=it.getNext();
+			lista.insert(sub.getRoot(), lista.size());
+			
+		}
+		descendientes(generations-1, sub);
+		
+		return lista;
+	}
+	
+	
+	private TreeIF<DoctorIF> buscaDoctor(DoctorIF doctor, TreeIF<DoctorIF> tree){
+		
+		if(tree.getRoot().equals(doctor)){
+			
+			return tree;
+		}
+		else{
+			
+			ListIF<TreeIF<DoctorIF>> list= tree.getChildren();
+			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
+			
+			while(it.hasNext()){
+				
+				TreeIF<DoctorIF> subarbol=it.getNext();
+				
+				subarbol=buscaDoctor(doctor, subarbol);
+				
+			}
+			
+		}
+		
+		return tree;
+	
+	}
+	
 
 	@Override
 	public CollectionIF<DoctorIF> getSiblings() {
-		// TODO Auto-generated method stub
+		
+		
+		
 		return null;
 	}
 
