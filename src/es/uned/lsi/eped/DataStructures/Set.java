@@ -2,11 +2,11 @@ package es.uned.lsi.eped.DataStructures;
 
 public class Set<T> extends Collection<T> implements SetIF<T> {
 	//constructor por defecto: crea conjunto vacío
-	Set(){
+	public Set(){
 		super();
 	}
 	//constructor por parámetro: crea conjunto unitario con elemento e
-	Set(T e){
+	public Set(T e){
 		super(e);
 	}
 	//devuelve el número de elementos del conjunto, i.e., el cardinal del conjunto
