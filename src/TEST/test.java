@@ -48,13 +48,14 @@ public class test {
 			TreeIF<DoctorIF> sigu=it.getNext();
 			
 			System.out.print(sigu.getRoot()+ ",");
+			
 		}
 		
-
+		System.out.println();
 		
-		academia.addSupervision(doctor5, doctor3);
-		
-		
+//		academia.addSupervision(doctor7, doctor2);
+//		
+//		
 //		TreeIF<DoctorIF> arbol1=academia.GetTree();
 //		ListIF<TreeIF<DoctorIF>> lista1=arbol.getChildren();
 //		

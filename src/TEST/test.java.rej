@@ -1,20 +1,20 @@
 diff a/src/TEST/test.java b/src/TEST/test.java	(rejected hunks)
-@@ -46,13 +46,14 @@
+@@ -48,14 +48,13 @@
  			TreeIF<DoctorIF> sigu=it.getNext();
  			
  			System.out.print(sigu.getRoot()+ ",");
-+			
+-			
  		}
  		
--
--		
--		academia.addSupervision(doctor5, doctor3);
--		
-+		System.out.println();
+-		System.out.println();
++
++		
++		academia.addSupervision(doctor5, doctor3);
++		
  		
-+//		academia.addSupervision(doctor7, doctor2);
-+//		
-+//		
+-//		academia.addSupervision(doctor7, doctor2);
+-//		
+-//		
  //		TreeIF<DoctorIF> arbol1=academia.GetTree();
  //		ListIF<TreeIF<DoctorIF>> lista1=arbol.getChildren();
  //		
