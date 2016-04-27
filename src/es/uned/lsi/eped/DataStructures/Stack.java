@@ -3,7 +3,7 @@ package es.uned.lsi.eped.DataStructures;
 public class Stack<T> extends Collection<T> implements StackIF<T> {
 
 	//constructor por defecto: crea una pila vacía
-	Stack(){
+	public Stack(){
 		super();
 	}
 	//constructor por copia

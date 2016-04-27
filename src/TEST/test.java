@@ -36,6 +36,8 @@ public class test {
 	//	System.out.println(doctor7.getSupervisor());
 		
 		
+		System.out.println( "El supervisor del doctor " +  doctor7.getId() + " es:" + doctor7.getSupervisor());
+		
 		TreeIF<DoctorIF> arbol=academia.GetTree();
 		ListIF<TreeIF<DoctorIF>> lista=arbol.getChildren();
 		
@@ -46,14 +48,13 @@ public class test {
 			TreeIF<DoctorIF> sigu=it.getNext();
 			
 			System.out.print(sigu.getRoot()+ ",");
-			
 		}
 		
-		System.out.println();
+
 		
-//		academia.addSupervision(doctor7, doctor2);
-//		
-//		
+		academia.addSupervision(doctor5, doctor3);
+		
+		
 //		TreeIF<DoctorIF> arbol1=academia.GetTree();
 //		ListIF<TreeIF<DoctorIF>> lista1=arbol.getChildren();
 //		
@@ -67,6 +68,8 @@ public class test {
 //			
 //		}
 		
+		
+		//PRUEBA DEL METODO GETSTUDENTS
 		System.out.println();
 		
 		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor2.getStudents();
@@ -82,7 +85,27 @@ public class test {
 		}
 		
 		System.out.println();
+		
+		
+		
+		// PRUEBA DEL METODO GETDESCENDANTS
+		doctor2.getDescendants(1);
+		
+		ListIF<DoctorIF> list2=(ListIF<DoctorIF>) doctor2.getDescendants(1);
+		IteratorIF<DoctorIF> iterator2=list.iterator();
+		
+		while(iterator2.hasNext()){
+			
+			DoctorS doc= (DoctorS) iterator2.getNext();
+			
+			System.out.print(doc.getId()+ ", ");
+			
+		}
+		
+		System.out.println();
+		
 	}
+	
 	
 	
 

@@ -94,7 +94,7 @@ public class AcademiaS implements AcademiaIF {
 		return size;
 	}
 
-	@Override
+	//FUNCIONA
 	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
 		
 			encuentra(arbol, supervisor, newDoctor);
@@ -175,7 +175,7 @@ public class AcademiaS implements AcademiaIF {
 	
 
 
-	@Override
+	//FUNCIONA
 	public void addSupervision(DoctorIF student, DoctorIF supervisor) {
 		
 		
