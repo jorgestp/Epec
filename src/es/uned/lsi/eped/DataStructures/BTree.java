@@ -1,6 +1,6 @@
 package es.uned.lsi.eped.DataStructures;
 
-public class BTree<T> extends Collection<T> implements BTreeIF<T> {
+public class BTree<T> implements BTreeIF<T> {
 
 	private T root;
 	private BTreeIF<T> leftChild;

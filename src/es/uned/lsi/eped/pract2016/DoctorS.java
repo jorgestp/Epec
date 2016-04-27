@@ -197,7 +197,7 @@ public class DoctorS implements DoctorIF {
 				
 				DoctorIF doc=subArbol.getRoot();
 				SetIF<DoctorIF> conjuntoDescendiente = (SetIF<DoctorIF>) doc.getDescendants(generations - 1);
-				SetIF<DoctorIF> descConHijos = new Set<>(doc).union(conjuntoDescendiente);
+				SetIF<DoctorIF> descConHijos = new Set<DoctorIF>(doc).union(conjuntoDescendiente);
 				
 				conjunto=(Set<DoctorIF>) conjunto.union(descConHijos);
 				

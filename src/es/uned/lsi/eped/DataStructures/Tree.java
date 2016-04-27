@@ -1,10 +1,9 @@
 package es.uned.lsi.eped.DataStructures;
 
-public class Tree<T> extends Collection<T> implements TreeIF<T> {
+public class Tree<T> implements TreeIF<T> {
 	
 	private T root;
 	private ListIF<TreeIF<T>> children; 
-
 	
 	//constructor por defecto: construye un árbol n-ário vacío
 	public Tree(){

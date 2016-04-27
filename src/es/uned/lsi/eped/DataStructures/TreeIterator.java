@@ -5,7 +5,7 @@ public class TreeIterator<T> extends Iterator<T>{
 	public TreeIterator(){
 		super();
 	}
-	public TreeIterator(TreeIF<T> tree, int traversal){
+	TreeIterator(TreeIF<T> tree, int traversal){
 		super();
 		pathNode = null;
 		switch (traversal) {
