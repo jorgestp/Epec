@@ -179,58 +179,39 @@ public class DoctorS implements DoctorIF {
 		return descendientes( generations, arbol);
 	}
 	
-	private ListIF<DoctorIF> descendientes( int generations, TreeIF<DoctorIF> tree){
+	private CollectionIF<DoctorIF> descendientes( int generations, TreeIF<DoctorIF> tree){
 		
-		ListIF<DoctorIF> lista=new List<DoctorIF>();
+		Set<DoctorIF> conjunto=new Set<DoctorIF>();
 		
 		if(generations==0){
 			
-			return lista;
+			return conjunto;
+		}else{
+			
+			ListIF<TreeIF<DoctorIF>> lista=tree.getChildren();
+			IteratorIF<TreeIF<DoctorIF>> it=lista.iterator();
+			
+			while (it.hasNext()){
+				
+				TreeIF<DoctorIF> subArbol=it.getNext();
+				
+				DoctorIF doc=subArbol.getRoot();
+				SetIF<DoctorIF> conjuntoDescendiente = (SetIF<DoctorIF>) doc.getDescendants(generations - 1);
+				SetIF<DoctorIF> descConHijos = new Set<>(doc).union(conjuntoDescendiente);
+				
+				conjunto=(Set<DoctorIF>) conjunto.union(descConHijos);
+				
+				
+			
+			}
+			
+			return conjunto;
 		}
-		if(tree.isLeaf()){
-			
-			return lista;
-		}
-		
-		ListIF<TreeIF<DoctorIF>> listaHijos=tree.getChildren();
-		
-		incluirEnLista(listaHijos, lista, generations-1);
 		
 		
-		IteratorIF<TreeIF<DoctorIF>> it=listaHijos.iterator();
-		
-		while(it.hasNext()){
-			
-			TreeIF<DoctorIF> subarbol=it.getNext();
-
-			
-			lista=descendientes(generations -1, subarbol);
-			
-		}
-		
-		return lista;
 	}
 	
-	private ListIF<DoctorIF> incluirEnLista(ListIF<TreeIF<DoctorIF>> hijos, ListIF<DoctorIF> lista, int generations){
-		
-		
-		TreeIF<DoctorIF> sub = null;
-		if(generations==0){
-			
-			return lista;
-		}
-		IteratorIF<TreeIF<DoctorIF>> it=hijos.iterator();
-		
-		while(it.hasNext()){
-			
-			 sub=it.getNext();
-			lista.insert(sub.getRoot(), lista.size());
-			
-		}
-		descendientes(generations-1, sub);
-		
-		return lista;
-	}
+	
 	
 	
 	private TreeIF<DoctorIF> buscaDoctor(DoctorIF doctor, TreeIF<DoctorIF> tree){
