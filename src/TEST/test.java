@@ -79,7 +79,19 @@ public class test {
 		
 		
 		// PRUEBA DEL METODO GETDESCENDANTS
-		System.out.println(doctor5.buscaDoctor(doctor5, academia.GetTree()).getRoot());
+		
+		SetIF<DoctorIF> set=(SetIF<DoctorIF>) doctor2.getDescendants(3);
+		
+		IteratorIF<DoctorIF> it=set.iterator();
+		
+		while(it.hasNext()){
+			
+			DoctorIF aux=it.getNext();
+			
+			System.out.print(aux.toString());
+		}
+		
+		
 	
 		
 	}

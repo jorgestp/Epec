@@ -171,47 +171,71 @@ public class DoctorS implements DoctorIF {
 	@Override
 	public CollectionIF<DoctorIF> getDescendants(int generations) {
 		
-		TreeIF<DoctorIF> tree=academia.GetTree();
+		SetIF<DoctorIF> conj=new Set<DoctorIF>();
 		
-		 TreeIF<DoctorIF> arbol=buscaDoctor(this, tree);
+		 TreeIF<DoctorIF> nodo=buscaDoctor(this, academia.GetTree());
 		
+		 if(generations<0){
+			 
+			 throw new IllegalArgumentException("La generacion debe ser mayor a 0");
+		 }
+		 
+		 if(generations==0){
+			 
+			 return conj;
+		 }
+		 
+		 		ListIF<TreeIF<DoctorIF>> list=nodo.getChildren();
+		 		IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
+		 		
+		 		while(it.hasNext()){
+		 			
+		 			TreeIF<DoctorIF> sub=it.getNext();
+		 			
+		 			DoctorIF aux=sub.getRoot();
+		 			SetIF<DoctorIF> conjDescendiente=(SetIF<DoctorIF>) aux.getDescendants(generations-1);
+		 			SetIF<DoctorIF> conjConHijos=new Set<DoctorIF>(aux).union(conjDescendiente);
+		 			conj=conj.union(conjConHijos);
+		 		}
+		 
+		 
 		
-		return descendientes( generations, arbol);
+		return conj;
 	}
 	
-	private CollectionIF<DoctorIF> descendientes( int generations, TreeIF<DoctorIF> tree){
-		
-		Set<DoctorIF> conjunto=new Set<DoctorIF>();
-		
-		if(generations==0){
-			
-			return conjunto;
-		}else{
-			
-			ListIF<TreeIF<DoctorIF>> lista=tree.getChildren();
-			IteratorIF<TreeIF<DoctorIF>> it=lista.iterator();
-			
-			while (it.hasNext()){
-				
-				TreeIF<DoctorIF> subArbol=it.getNext();
-				
-				DoctorIF doc=subArbol.getRoot();
-				SetIF<DoctorIF> conjuntoDescendiente = (SetIF<DoctorIF>) doc.getDescendants(generations - 1);
-				SetIF<DoctorIF> descConHijos = new Set<DoctorIF>(doc).union(conjuntoDescendiente);
-				
-				conjunto=(Set<DoctorIF>) conjunto.union(descConHijos);
-				
-				
-			
-			}
-			
-			return conjunto;
-		}
-		
-		
-	}
+//	private CollectionIF<DoctorIF> descendientes( int generations, TreeIF<DoctorIF> tree){
+//		
+//		Set<DoctorIF> conjunto=new Set<DoctorIF>();
+//		
+//		if(generations==0){
+//			
+//			return conjunto;
+//		}else{
+//			
+//			ListIF<TreeIF<DoctorIF>> lista=tree.getChildren();
+//			IteratorIF<TreeIF<DoctorIF>> it=lista.iterator();
+//			
+//			while (it.hasNext()){
+//				
+//				TreeIF<DoctorIF> subArbol=it.getNext();
+//				
+//				DoctorIF doc=subArbol.getRoot();
+//				SetIF<DoctorIF> conjuntoDescendiente = (SetIF<DoctorIF>) doc.getDescendants(generations - 1);
+//				SetIF<DoctorIF> descConHijos = new Set<DoctorIF>(doc).union(conjuntoDescendiente);
+//				
+//				conjunto=(Set<DoctorIF>) conjunto.union(descConHijos);
+//				
+//				
+//			
+//			}
+//			
+//			return conjunto;
+//		}
+//		
+//		
+//	}
 	
-	 public TreeIF<DoctorIF> buscaDoctor(DoctorIF doctor, TreeIF<DoctorIF> tree) {
+	 private TreeIF<DoctorIF> buscaDoctor(DoctorIF doctor, TreeIF<DoctorIF> tree) {
 		  TreeIF<DoctorIF> result = null;
 		  if (tree.getRoot().equals(doctor)) {
 
