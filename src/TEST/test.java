@@ -33,77 +33,54 @@ public class test {
 		
 		academia.addDoctor(doctor5, doctor4);
 		
-	//	System.out.println(doctor7.getSupervisor());
+	
 		
 		
-		System.out.println( "El supervisor del doctor " +  doctor7.getId() + " es:" + doctor7.getSupervisor());
 		
-		TreeIF<DoctorIF> arbol=academia.GetTree();
-		ListIF<TreeIF<DoctorIF>> lista=arbol.getChildren();
+		////*********PRUEBA DEL MEOTOD GETSUPERVISOR******////////////////
 		
-		IteratorIF<TreeIF<DoctorIF>> it=lista.iterator();
-		
-		while(it.hasNext()){
-			
-			TreeIF<DoctorIF> sigu=it.getNext();
-			
-			System.out.print(sigu.getRoot()+ ",");
-			
-		}
-		
-		System.out.println();
-		
-//		academia.addSupervision(doctor7, doctor2);
+//		System.out.println( "El supervisor del doctor " +  doctor7.getId() + " es:" + doctor7.getSupervisor());
 //		
+//		TreeIF<DoctorIF> arbol=academia.GetTree();
+//		ListIF<TreeIF<DoctorIF>> lista=arbol.getChildren();
 //		
-//		TreeIF<DoctorIF> arbol1=academia.GetTree();
-//		ListIF<TreeIF<DoctorIF>> lista1=arbol.getChildren();
+//		IteratorIF<TreeIF<DoctorIF>> it=lista.iterator();
 //		
-//		IteratorIF<TreeIF<DoctorIF>> it1=lista.iterator();
-//		
-//		while(it1.hasNext()){
+//		while(it.hasNext()){
 //			
-//			TreeIF<DoctorIF> sigu=it1.getNext();
+//			TreeIF<DoctorIF> sigu=it.getNext();
 //			
 //			System.out.print(sigu.getRoot()+ ",");
 //			
 //		}
+//		
+//		System.out.println();
+		
+
 		
 		
-		//PRUEBA DEL METODO GETSTUDENTS
-		System.out.println();
-		
-		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor2.getStudents();
-		
-		IteratorIF<DoctorIF> iterator=list.iterator();
-		
-		while(iterator.hasNext()){
-			
-			DoctorS doc= (DoctorS) iterator.getNext();
-			
-			System.out.print(doc.getId()+ ", ");
-			
-		}
-		
-		System.out.println();
+//		//PRUEBA DEL METODO GETSTUDENTS
+//		System.out.println();
+//		
+//		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor2.getStudents();
+//		
+//		IteratorIF<DoctorIF> iterator=list.iterator();
+//		
+//		while(iterator.hasNext()){
+//			
+//			DoctorS doc= (DoctorS) iterator.getNext();
+//			
+//			System.out.print(doc.getId()+ ", ");
+//			
+//		}
+//		
+//		System.out.println();
 		
 		
 		
 		// PRUEBA DEL METODO GETDESCENDANTS
-		doctor2.getDescendants(1);
-		
-		ListIF<DoctorIF> list2=(ListIF<DoctorIF>) doctor2.getDescendants(1);
-		IteratorIF<DoctorIF> iterator2=list.iterator();
-		
-		while(iterator2.hasNext()){
-			
-			DoctorS doc= (DoctorS) iterator2.getNext();
-			
-			System.out.print(doc.getId()+ ", ");
-			
-		}
-		
-		System.out.println();
+		System.out.println(doctor5.buscaDoctor(doctor5, academia.GetTree()).getRoot());
+	
 		
 	}
 	

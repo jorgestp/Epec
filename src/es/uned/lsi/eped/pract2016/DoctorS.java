@@ -211,33 +211,32 @@ public class DoctorS implements DoctorIF {
 		
 	}
 	
+	 public TreeIF<DoctorIF> buscaDoctor(DoctorIF doctor, TreeIF<DoctorIF> tree) {
+		  TreeIF<DoctorIF> result = null;
+		  if (tree.getRoot().equals(doctor)) {
+
+		   result = tree;
+		  } else {
+
+		   ListIF<TreeIF<DoctorIF>> list = tree.getChildren();
+		   IteratorIF<TreeIF<DoctorIF>> it = list.iterator();
+
+		   while (it.hasNext() && result == null) {
+
+		    TreeIF<DoctorIF> subarbol = it.getNext();
+
+		    result = buscaDoctor(doctor, subarbol);
+
+		   }
+
+		  }
+
+		  return result;
+
+		 }
 	
 	
-	
-	private TreeIF<DoctorIF> buscaDoctor(DoctorIF doctor, TreeIF<DoctorIF> tree){
-		
-		if(tree.getRoot().equals(doctor)){
-			
-			return tree;
-		}
-		else{
-			
-			ListIF<TreeIF<DoctorIF>> list= tree.getChildren();
-			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
-			
-			while(it.hasNext()){
-				
-				TreeIF<DoctorIF> subarbol=it.getNext();
-				
-				subarbol=buscaDoctor(doctor, subarbol);
-				
-			}
-			
-		}
-		
-		return tree;
-	
-	}
+
 	
 
 	@Override
