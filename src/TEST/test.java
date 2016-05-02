@@ -39,30 +39,15 @@ public class test {
 		
 		////*********PRUEBA DEL MEOTOD GETSUPERVISOR******////////////////
 		
-//		System.out.println( "El supervisor del doctor " +  doctor7.getId() + " es:" + doctor7.getSupervisor());
-//		
-//		TreeIF<DoctorIF> arbol=academia.GetTree();
-//		ListIF<TreeIF<DoctorIF>> lista=arbol.getChildren();
-//		
-//		IteratorIF<TreeIF<DoctorIF>> it=lista.iterator();
-//		
-//		while(it.hasNext()){
-//			
-//			TreeIF<DoctorIF> sigu=it.getNext();
-//			
-//			System.out.print(sigu.getRoot()+ ",");
-//			
-//		}
-//		
-//		System.out.println();
-		
+	//	System.out.println( "El supervisor del doctor " +  doctor5.getId() + " es:" + doctor5.getSupervisor());
+
 
 		
 		
 //		//PRUEBA DEL METODO GETSTUDENTS
 //		System.out.println();
 //		
-//		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor2.getStudents();
+//		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor.getStudents();
 //		
 //		IteratorIF<DoctorIF> iterator=list.iterator();
 //		
@@ -75,21 +60,35 @@ public class test {
 //		}
 //		
 //		System.out.println();
+//		
 		
 		
+//		// PRUEBA DEL METODO GETDESCENDANTS
+//		
+//		SetIF<DoctorIF> set=(SetIF<DoctorIF>) doctor2.getDescendants(3);
+//		
+//		IteratorIF<DoctorIF> it=set.iterator();
+//		
+//		while(it.hasNext()){
+//			
+//			DoctorIF aux=it.getNext();
+//			
+//			System.out.print(aux.toString());
+//		}
 		
-		// PRUEBA DEL METODO GETDESCENDANTS
 		
-		SetIF<DoctorIF> set=(SetIF<DoctorIF>) doctor2.getDescendants(3);
+	//*************************GETANTECESORS
 		
-		IteratorIF<DoctorIF> it=set.iterator();
 		
-		while(it.hasNext()){
+		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor7.getAncestors(2);
+		
+		IteratorIF<DoctorIF> iterator=list.iterator();
+		
+		while(iterator.hasNext()){
 			
-			DoctorIF aux=it.getNext();
+			DoctorS doc= (DoctorS) iterator.getNext();
 			
-			System.out.print(aux.toString());
-		}
+			System.out.print(doc.getId()+ ", ");
 		
 		
 	
@@ -97,6 +96,6 @@ public class test {
 	}
 	
 	
-	
+	}
 
 }

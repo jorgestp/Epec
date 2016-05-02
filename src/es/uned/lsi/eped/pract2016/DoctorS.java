@@ -25,7 +25,7 @@ public class DoctorS implements DoctorIF {
 		return academia;
 	}
 
-	//FUNCIONA a medias
+	//FUNCIONA
 	public DoctorS getSupervisor(){
 	
 		TreeIF<DoctorIF> c=academia.GetTree();
@@ -55,10 +55,9 @@ public class DoctorS implements DoctorIF {
 				
 				it.reset();
 				
-				while(it.hasNext()){
+				while(it.hasNext() && doc==null){
 					
 					TreeIF<DoctorIF>subArbol=it.getNext();
-					 doc=subArbol.getRoot();
 					 doc= buscarPadre(subArbol, doctor);
 					
 					
@@ -132,7 +131,7 @@ public class DoctorS implements DoctorIF {
 	
 
 
-	@Override
+	//FUNCIONA
 	public CollectionIF<DoctorIF> getStudents() {
 		TreeIF<DoctorIF> arbol=academia.GetTree();	
 		return hijos(arbol, this);
@@ -167,8 +166,10 @@ public class DoctorS implements DoctorIF {
 
 			return lista;
 		}
+		
+		
 
-	@Override
+	//FUNCIONA
 	public CollectionIF<DoctorIF> getDescendants(int generations) {
 		
 		SetIF<DoctorIF> conj=new Set<DoctorIF>();
