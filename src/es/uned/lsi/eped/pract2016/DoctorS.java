@@ -204,37 +204,7 @@ public class DoctorS implements DoctorIF {
 		return conj;
 	}
 	
-//	private CollectionIF<DoctorIF> descendientes( int generations, TreeIF<DoctorIF> tree){
-//		
-//		Set<DoctorIF> conjunto=new Set<DoctorIF>();
-//		
-//		if(generations==0){
-//			
-//			return conjunto;
-//		}else{
-//			
-//			ListIF<TreeIF<DoctorIF>> lista=tree.getChildren();
-//			IteratorIF<TreeIF<DoctorIF>> it=lista.iterator();
-//			
-//			while (it.hasNext()){
-//				
-//				TreeIF<DoctorIF> subArbol=it.getNext();
-//				
-//				DoctorIF doc=subArbol.getRoot();
-//				SetIF<DoctorIF> conjuntoDescendiente = (SetIF<DoctorIF>) doc.getDescendants(generations - 1);
-//				SetIF<DoctorIF> descConHijos = new Set<DoctorIF>(doc).union(conjuntoDescendiente);
-//				
-//				conjunto=(Set<DoctorIF>) conjunto.union(descConHijos);
-//				
-//				
-//			
-//			}
-//			
-//			return conjunto;
-//		}
-//		
-//		
-//	}
+
 	
 	 private TreeIF<DoctorIF> buscaDoctor(DoctorIF doctor, TreeIF<DoctorIF> tree) {
 		  TreeIF<DoctorIF> result = null;
@@ -267,9 +237,70 @@ public class DoctorS implements DoctorIF {
 	@Override
 	public CollectionIF<DoctorIF> getSiblings() {
 		
+		TreeIF<DoctorIF> padre=busqueda(academia.GetTree(), this);
+		
+		ListIF<TreeIF<DoctorIF>> list=padre.getChildren();
+
+		return incluir(list, this);
+	}
+	
+	
+	
+	
+	private TreeIF<DoctorIF> busqueda(TreeIF<DoctorIF> arbolActual, DoctorIF doctor){
+		
+		TreeIF<DoctorIF> doc = null;
+		
+		if(arbolActual.getRoot().equals(doctor)){
+			
+			
+			return arbolActual;
+			
+		}else{
+			
+			ListIF<TreeIF<DoctorIF>> list=arbolActual.getChildren();
+			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
+			if(EstaEnLista(list, it, doctor)){
+					doc=arbolActual;
+				return doc;
+				
+			}else{
+				
+				it.reset();
+				
+				while(it.hasNext() && doc==null){
+					
+					TreeIF<DoctorIF>subArbol=it.getNext();
+					 doc= busqueda(subArbol, doctor);
+					
+					
+				}
+			}
+			
+		}
+		
+		return doc;
+	}
+
+	private CollectionIF<DoctorIF> incluir(ListIF<TreeIF<DoctorIF>> list, DoctorIF doctor){
+		
+		ListIF<DoctorIF> hermanos=new List<DoctorIF>();
+		
+		IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
+		
+		while(it.hasNext()){
+			
+			TreeIF<DoctorIF> doc=it.getNext();
+			
+			if(!doc.getRoot().equals(doctor)){
+				
+				hermanos.insert(doc.getRoot(), hermanos.size());
+			}
+			
+		}
 		
 		
-		return null;
+		return hermanos;
 	}
 
 	public String toString()	{
