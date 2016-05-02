@@ -294,7 +294,7 @@ public class DoctorS implements DoctorIF {
 			
 			if(!doc.getRoot().equals(doctor)){
 				
-				hermanos.insert(doc.getRoot(), hermanos.size());
+				hermanos.insert(doc.getRoot(), hermanos.size()+1);
 			}
 			
 		}
