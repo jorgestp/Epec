@@ -16,6 +16,25 @@ public class DoctorS implements DoctorIF {
 		
 	}
 	
+	public DoctorS(int iD2) {
+		id=iD2;
+	}
+
+	
+	//constructor que me pide crear la clase IO pero no se con que utilidad
+	public DoctorS(int iD2, AcademiaIF a, DoctorIF doctorIF) {
+		
+		
+	
+	}
+	
+
+	
+
+	public DoctorS() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -307,6 +326,14 @@ public class DoctorS implements DoctorIF {
 		
 		return "" + id;
 	}
+
+	public void setAcademia(AcademiaS a) {
+		
+		academia=a;
+		
+	}
+
+
 	
 
 		

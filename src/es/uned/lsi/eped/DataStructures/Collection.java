@@ -5,7 +5,7 @@ public class Collection<T> implements CollectionIF<T> {
 	protected Node<T> firstNode;
 	protected int size;
 	//Constructor por defecto
-	Collection(){
+	public Collection(){
 		firstNode = null;
 		size = 0;
 	}
