@@ -9,16 +9,60 @@ public class DoctorC implements DoctorIF {
 	private int id;
 	private AcademiaC academia;
 	
-	private CollectionIF<DoctorC> students;
+	private CollectionIF<DoctorIF> students;
+	
+	
+	public DoctorC(int id, AcademiaC academia){
+		
+		this.id=id;
+		this.academia=academia;
+		students=new List<DoctorIF>();
+	}
+	
+	public DoctorC(int iDDoctor, AcademiaIF a, List<DoctorIF> supervisors) {
+		
+	id=iDDoctor;
+		
+		academia=(AcademiaC) a;
+		
+		students=supervisors;
+	}	
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public AcademiaC getAcademia() {
+		return academia;
+	}
+
+	public void setStudents(CollectionIF<DoctorIF> students) {
+		
+		this.students = students;
+	}
 
 	public DoctorC(int iD2) {
 		id=iD2;
 
 	}
 
-	public DoctorC(int iDDoctor, AcademiaIF a, List<DoctorIF> supervisors) {
-		// TODO Auto-generated constructor stub
+	
+
+
+	//por hacer tb
+	public CollectionIF<DoctorIF> getSupervisor(){
+		
+		return null;
 	}
+	
+	
+	
+	
 
 	@Override
 	public CollectionIF<DoctorIF> getAncestors(int generations) {

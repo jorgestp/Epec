@@ -1,9 +1,27 @@
 package es.uned.lsi.eped.pract2016;
 
-import es.uned.lsi.eped.DataStructures.IteratorIF;
+import es.uned.lsi.eped.DataStructures.*;
 
 public class AcademiaC implements AcademiaIF {
 
+	private ListIF<DoctorC> lista;
+	
+	
+	
+	public AcademiaC(){
+		
+		lista=new List<DoctorC>();
+	}
+	
+	public AcademiaC(DoctorIF founder){
+		
+		lista=new List<DoctorC>();
+		
+		lista.insert((DoctorC) founder, lista.size()+1);
+		
+	}
+	
+	
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
@@ -30,7 +48,10 @@ public class AcademiaC implements AcademiaIF {
 
 	@Override
 	public DoctorIF getFounder() {
-		// TODO Auto-generated method stub
+
+		
+		
+		
 		return null;
 	}
 
@@ -48,8 +69,10 @@ public class AcademiaC implements AcademiaIF {
 
 	@Override
 	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
-		// TODO Auto-generated method stub
 
+		
+		
+		
 	}
 
 	@Override
