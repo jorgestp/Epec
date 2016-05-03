@@ -84,7 +84,7 @@ public class DoctorS implements DoctorIF {
 	}
 
 	
-	@Override
+	//modificacion en clase 03052016 en el metodo privado; insert SIZE+1
 	public CollectionIF<DoctorIF> getAncestors(int generations) {
 
 		ListIF<DoctorIF> colec=new List<DoctorIF>();
@@ -112,7 +112,7 @@ public class DoctorS implements DoctorIF {
 			}
 			if(generations==0){
 				
-				antece.insert(this.getSupervisor(), antece.size());
+				antece.insert(this.getSupervisor(), antece.size()+1);
 				return antece;
 			}else{
 				
@@ -234,7 +234,7 @@ public class DoctorS implements DoctorIF {
 
 	
 
-	@Override
+	 //FUNCIONA
 	public CollectionIF<DoctorIF> getSiblings() {
 		
 		TreeIF<DoctorIF> padre=busqueda(academia.GetTree(), this);

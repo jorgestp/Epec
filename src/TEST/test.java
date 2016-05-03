@@ -79,32 +79,31 @@ public class test {
 		
 	//*************************GETANTECESORS
 		
-//		
-//		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor7.getAncestors(2);
-//		
-//		IteratorIF<DoctorIF> iterator=list.iterator();
-//		
-//		while(iterator.hasNext()){
-//			
-//			DoctorS doc= (DoctorS) iterator.getNext();
-//			
-//			System.out.print(doc.getId()+ ", ");
-
-//		
-//	}
-	
-		///////GETSIBLING/////
 		
-		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor4.getSiblings();
+		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor7.getAncestors(2);
 		
 		IteratorIF<DoctorIF> iterator=list.iterator();
 		
 		while(iterator.hasNext()){
 			
-			DoctorS doc=(DoctorS) iterator.getNext();
+			DoctorS doc= (DoctorS) iterator.getNext();
 			
-			System.out.print(doc.getId());
+			System.out.print(doc.getId()+ ", ");
+
 		}
+	
+//		///////GETSIBLING/////
+//		
+//		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor4.getSiblings();
+//		
+//		IteratorIF<DoctorIF> iterator=list.iterator();
+//		
+//		while(iterator.hasNext()){
+//			
+//			DoctorS doc=(DoctorS) iterator.getNext();
+//			
+//			System.out.print(doc.getId());
+//		}
 		
 		
 	
