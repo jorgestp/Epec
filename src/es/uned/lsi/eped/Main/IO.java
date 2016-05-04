@@ -52,6 +52,7 @@ public class IO {
 			else{
 				DoctorS doctorS = IO.readDoctorS(academia, lineData);
 				
+				doctorS.setAcademia(academia);
 				
 				academia.addDoctor(doctorS, doctorS.getSupervisor());
 			}
@@ -245,6 +246,8 @@ public class IO {
 			StringTokenizer st = new StringTokenizer(lineOperation);
 			//se toma el primer token para distinguir la operación
 			String operation = st.nextToken();
+			
+			
 			//se aplica la operación correspondiente según el código de operación
 			//consulta de supervisores
 			if(operation.equalsIgnoreCase("SU")){
@@ -253,6 +256,8 @@ public class IO {
 				ID = ID.replace("\"","");
 				int IDDoctor = Integer.valueOf(ID);
 				if(scenario.equalsIgnoreCase("S")){
+					
+					
 					DoctorS doctor = (DoctorS) academia.getDoctor(IDDoctor);
 					//se toma el tiempo antes de aplicar la operación
 					long time_start = System.currentTimeMillis();
@@ -296,6 +301,9 @@ public class IO {
 					System.out.println("- Tiempo: "+time);			
 				}
 			}
+			
+			
+			
 			//consulta de ancestros
 			if(operation.equalsIgnoreCase("AN")){
 				String ID = st.nextToken();
@@ -315,6 +323,9 @@ public class IO {
 					generations+" generaciones son "+salida);				
 				System.out.println("- Tiempo: "+time);			
 			}
+			
+			
+			
 			//consulta de estudiantes
 			if(operation.equalsIgnoreCase("ST")){
 				String ID = st.nextToken();
@@ -332,6 +343,9 @@ public class IO {
 				System.out.println("\""+IDDoctor+"\" ha dirigido la tesis de "+salida);
 				System.out.println("- Tiempo: "+time);			
 			}
+			
+			
+			
 			//consulta de descendientes académicos
 			if(operation.equalsIgnoreCase("DE")){
 				String ID = st.nextToken();
@@ -351,6 +365,9 @@ public class IO {
 					generations+" generaciones son "+salida);	
 				System.out.println("- Tiempo: "+time);			
 			}
+			
+			
+			
 			//consulta de hermanos académicos
 			if(operation.equalsIgnoreCase("SI")){
 				String ID = st.nextToken();

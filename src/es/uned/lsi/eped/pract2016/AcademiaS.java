@@ -75,17 +75,53 @@ public class AcademiaS implements AcademiaIF {
 		return arbol.getRoot();
 	}
 
-	@Override
+	
 	public DoctorIF getDoctor(int id) {
+		
+		
 		
 		if(id==1){
 			
 			return arbol.getRoot();
 		}
 		
-		return arbol.getChild(id).getRoot();
+		
+		
+		return find(arbol.getChildren(), id);
 		
 	}
+	
+		private DoctorIF find(ListIF<TreeIF<DoctorIF>> list, int id){
+			
+			DoctorIF doc=null;
+
+			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
+			
+			while(it.hasNext() && doc==null){
+				
+				TreeIF<DoctorIF> aux=it.getNext();
+				DoctorS doctor=(DoctorS) aux.getRoot();
+				
+				if(doctor.getId()==id){
+					
+					doc=doctor;
+					
+					return doc;
+				}else{
+					
+					doc=find(aux.getChildren(), id);
+					
+					
+				}
+			}
+			
+			
+			return doc;
+		}
+		
+		
+		
+	
 
 
 	@Override
@@ -131,47 +167,6 @@ public class AcademiaS implements AcademiaIF {
 	
 	
 	
-	public void mostrar(AcademiaS academia){	
-			
-		imprimiRoot(arbol);	
-		ListIF<TreeIF<DoctorIF>> list=arbol.getChildren();	
-		IteratorIF<TreeIF<DoctorIF>> it=list.iterator();	
-		while(it.hasNext()){		
-			TreeIF<DoctorIF> doctor=it.getNext();		
-			imprimir(arbol, doctor);	
-		}	
-	}
-	
-	private void imprimir(TreeIF<DoctorIF> tree, TreeIF<DoctorIF> doctor){
-		DoctorS supervisor=(DoctorS) tree.getRoot();
-		int sup=supervisor.getId();
-		
-		DoctorS hijo=(DoctorS) doctor.getRoot();
-		int id_doctor=hijo.getId();
-		
-		if(tree.isLeaf()){
-			
-			System.out.println("La tesis de " + id_doctor+ " fue supervisada por " + sup);
-		}else{
-			
-			ListIF<TreeIF<DoctorIF>> list=doctor.getChildren();
-			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
-			while(it.hasNext()){
-				System.out.println("La tesis de " + id_doctor+ " fue supervisada por " + sup);
-				imprimir(it.getNext(), arbol);
-			}
-		}
-	}
-		
-	private void imprimiRoot(TreeIF<DoctorIF> tree){
-		
-	DoctorS padre=(DoctorS) tree.getRoot();
-		
-		int id=padre.getId();
-		
-		System.out.println(" La academa fué fundada por " + id);
-	}
-			
 	
 
 

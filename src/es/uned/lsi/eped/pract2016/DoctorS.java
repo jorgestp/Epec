@@ -27,17 +27,15 @@ public class DoctorS implements DoctorIF {
 	}
 
 	
-	//constructor que me pide crear la clase IO pero no se con que utilidad
-	
-	public DoctorS(int iD2, AcademiaIF a, DoctorIF doctorIF) {
-		
-		
-	}
-	
+
 
 	
 
 	public DoctorS() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public DoctorS(int iD2, AcademiaIF a, DoctorIF doctor) {
 		// TODO Auto-generated constructor stub
 	}
 
