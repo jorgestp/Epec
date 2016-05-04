@@ -45,7 +45,7 @@ public class test {
 
 		
 	
-		DoctorIF doc= academia.getDoctor(doctor5.getId());
+		DoctorIF doc= academia.getDoctor(doctor7.getId());
 		
 		System.out.println(" el doctor buscado es el " + ((DoctorS) doc).getId());
 		
@@ -98,16 +98,16 @@ public class test {
 		
 	//*************************GETANTECESORS
 		
-//		
+		
 //		ListIF<DoctorIF> list=(ListIF<DoctorIF>) doctor7.getAncestors(2);
 //		
 //		IteratorIF<DoctorIF> iterator=list.iterator();
 //		
 //		while(iterator.hasNext()){
 //			
-//			DoctorS doc= (DoctorS) iterator.getNext();
+//			DoctorS doc2= (DoctorS) iterator.getNext();
 //			
-//			System.out.print(doc.getId()+ ", ");
+//			System.out.print(doc2.getId()+ ", ");
 //
 //		}
 	

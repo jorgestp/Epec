@@ -3,6 +3,7 @@ package es.uned.lsi.eped.pract2016.parser;
 import es.uned.lsi.eped.DataStructures.CollectionIF;
 import es.uned.lsi.eped.DataStructures.IteratorIF;
 import es.uned.lsi.eped.pract2016.AcademiaIF;
+import es.uned.lsi.eped.pract2016.AcademiaS;
 import es.uned.lsi.eped.pract2016.DoctorIF;
 import es.uned.lsi.eped.pract2016.DoctorS;
 
@@ -55,8 +56,12 @@ class ParserSSceario implements OperationsParser {
 
 	@Override
 	public void getDirectors(AcademiaIF academia, int doctorId) {
-		DoctorS doctor = (DoctorS) academia.getDoctor(doctorId);//No esta funcionando bien el getDoctor vale lo tengo wue modificar. Sip
+		
+		DoctorS doctor = (DoctorS) academia.getDoctor(doctorId);
+		//No esta funcionando bien el getDoctor vale lo tengo wue modificar. Sip
+		
 		if (doctor != null) {
+			
 			DoctorS supervisor = (DoctorS) doctor.getSupervisor();
 			System.out.println(String.format("Tesis de \"%d\" dirigida por %d", doctorId, supervisor.getId()));
 		}

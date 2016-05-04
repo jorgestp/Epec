@@ -60,7 +60,7 @@ public class MainEPED {
 			
 			
 			AcademiaS academia=new AcademiaS();
-			DoctorS founder=new DoctorS(1,academia);
+			DoctorS founder=new DoctorS(founderId,academia);
 			academia.setFounder(founder);
 			
 			
@@ -72,9 +72,16 @@ public class MainEPED {
 				if (line != null) {
 					int doctorId = getNextStudent(line);
 					int supervisorId = getNextSupervisor(line);
-					DoctorIF newDoctor = new DoctorS(doctorId);
-					DoctorIF doctorSupervisor = new DoctorS(supervisorId);
+					DoctorS newDoctor = new DoctorS(doctorId);
+					newDoctor.setAcademia(academia);
+					DoctorS doctorSupervisor = new DoctorS(supervisorId);
+					doctorSupervisor.setAcademia(academia);
 					academia.addDoctor(newDoctor, doctorSupervisor);
+					//En esa parte
+					//El codigo lo que haces es leer el nuevo doctor que tiene que crear, lo mete en newDoctor y el doctorSupervisor que es su supervisor,
+					//yo directamente los meto en academia
+					//Tu tendras que hacer algo distint
+					//Haz algo parecido a lo que hacias en TEST.java para probar el arbol
 				} else {
 					finished = true;
 				}

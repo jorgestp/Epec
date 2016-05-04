@@ -76,6 +76,7 @@ public class AcademiaS implements AcademiaIF {
 	}
 
 	
+	//funciona
 	public DoctorIF getDoctor(int id) {
 		
 		
@@ -97,7 +98,7 @@ public class AcademiaS implements AcademiaIF {
 
 			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
 			
-			while(it.hasNext() && doc==null){
+			while(it.hasNext() && doc==null ){
 				
 				TreeIF<DoctorIF> aux=it.getNext();
 				DoctorS doctor=(DoctorS) aux.getRoot();
@@ -107,6 +108,8 @@ public class AcademiaS implements AcademiaIF {
 					doc=doctor;
 					
 					return doc;
+					
+					
 				}else{
 					
 					doc=find(aux.getChildren(), id);
@@ -133,15 +136,15 @@ public class AcademiaS implements AcademiaIF {
 	//FUNCIONA
 	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
 		
-			encuentra(arbol, supervisor, newDoctor);
+			encuentra(GetTree(), newDoctor, supervisor);
 		
 		size++;
 	
 	}
 	
-	private void encuentra(TreeIF<DoctorIF> tree,DoctorIF sup, DoctorIF newdoctor){
+	private void encuentra(TreeIF<DoctorIF> tree,DoctorIF newdoctor, DoctorIF sup){
 		
-		if(tree.getRoot().equals(sup)){
+		if(tree.getRoot()==sup){
 			
 			tree.addChild(tree.getChildren().size()+1, new Tree<DoctorIF>(newdoctor));
 		}else{
