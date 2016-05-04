@@ -93,7 +93,7 @@ public class AcademiaS implements AcademiaIF {
 	}
 	
 		private DoctorIF find(ListIF<TreeIF<DoctorIF>> list, int id){
-			
+			//No funciona bien el find este. Ya añade bien a la academia.
 			DoctorIF doc=null;
 
 			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
@@ -138,15 +138,19 @@ public class AcademiaS implements AcademiaIF {
 		
 			encuentra(GetTree(), newDoctor, supervisor);
 		
-		size++;
+		
 	
 	}
 	
 	private void encuentra(TreeIF<DoctorIF> tree,DoctorIF newdoctor, DoctorIF sup){
+		DoctorS doctorS = (DoctorS) sup;
+		DoctorS academiaDoctorS = (DoctorS) tree.getRoot();
 		
-		if(tree.getRoot()==sup){
+		//No se pueden comparar referencias ya que no son iguales. Por eso daba el error.
+		if(academiaDoctorS.getId()==doctorS.getId()){
 			
 			tree.addChild(tree.getChildren().size()+1, new Tree<DoctorIF>(newdoctor));
+			size++;
 		}else{
 			
 			
@@ -154,9 +158,12 @@ public class AcademiaS implements AcademiaIF {
 			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
 			while(it.hasNext()){
 				TreeIF<DoctorIF> subarbol=it.getNext();
-				if(subarbol.getRoot().equals(sup)){
-					
+				DoctorS docSubarbol=(DoctorS) subarbol.getRoot();
+//				if(subarbol.getRoot().equals(doc)){
+				//No se pueden comparar referencias ya que no son iguales. Por eso daba el error.
+				if(docSubarbol.getId()==doctorS.getId()){	
 					subarbol.addChild(subarbol.getChildren().size()+1, new Tree<DoctorIF>(newdoctor));
+					size++;
 				}else{
 					
 					 encuentra(subarbol, sup, newdoctor);

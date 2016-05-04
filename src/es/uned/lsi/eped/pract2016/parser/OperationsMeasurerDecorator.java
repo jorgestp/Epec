@@ -5,7 +5,7 @@ import es.uned.lsi.eped.pract2016.AcademiaIF;
 
 public class OperationsMeasurerDecorator implements OperationsParser {
 
-	private static final int OPERATIONS = 1000000;
+	private static final int OPERATIONS = 1;
 
 	private final OperationsParser decorated;
 

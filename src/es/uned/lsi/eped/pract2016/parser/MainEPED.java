@@ -49,6 +49,10 @@ public class MainEPED {
 		}
 	}
 
+	
+	// No introduce el doctor en el arbol
+	
+	
 	private static AcademiaIF parseScenarioOne(BufferedReader dataBr) throws IOException {
 		BufferedReader br = new BufferedReader(dataBr);
 		String academiaFounderLine = br.readLine();
@@ -64,9 +68,7 @@ public class MainEPED {
 			academia.setFounder(founder);
 			
 			
-			
-//			DoctorIF founder = new DoctorS(founderId);
-//			AcademiaIF academiaIF = new AcademiaS(founder);
+		
 			while (!finished) {
 				String line = br.readLine();
 				if (line != null) {
@@ -77,11 +79,6 @@ public class MainEPED {
 					DoctorS doctorSupervisor = new DoctorS(supervisorId);
 					doctorSupervisor.setAcademia(academia);
 					academia.addDoctor(newDoctor, doctorSupervisor);
-					//En esa parte
-					//El codigo lo que haces es leer el nuevo doctor que tiene que crear, lo mete en newDoctor y el doctorSupervisor que es su supervisor,
-					//yo directamente los meto en academia
-					//Tu tendras que hacer algo distint
-					//Haz algo parecido a lo que hacias en TEST.java para probar el arbol
 				} else {
 					finished = true;
 				}
