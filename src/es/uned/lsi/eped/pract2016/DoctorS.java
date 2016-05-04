@@ -19,13 +19,19 @@ public class DoctorS implements DoctorIF {
 	public DoctorS(int iD2) {
 		id=iD2;
 	}
+	
+	
+	public DoctorS(String string) {
+
+		id=Integer.parseInt(string);
+	}
 
 	
 	//constructor que me pide crear la clase IO pero no se con que utilidad
+	
 	public DoctorS(int iD2, AcademiaIF a, DoctorIF doctorIF) {
 		
 		
-	
 	}
 	
 

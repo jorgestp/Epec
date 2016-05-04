@@ -54,6 +54,8 @@ public class DoctorC implements DoctorIF {
 	
 
 
+	
+
 	//por hacer tb
 	public CollectionIF<DoctorIF> getSupervisor(){
 		
