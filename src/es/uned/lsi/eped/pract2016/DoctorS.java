@@ -141,6 +141,7 @@ public class DoctorS implements DoctorIF {
 				
 				DoctorS doc= ((DoctorS) doctor).getSupervisor();
 				
+				//Falla a partir de aqui
 				antece= antecesores(generations-1, doc, tree);
 				antece.insert(doc, antece.size());
 				return antece;

@@ -156,7 +156,9 @@ public class AcademiaS implements AcademiaIF {
 			
 			ListIF<TreeIF<DoctorIF>> list=tree.getChildren();
 			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
-			while(it.hasNext()){
+			
+			boolean bandera=false;
+			while(it.hasNext() && !bandera){
 				TreeIF<DoctorIF> subarbol=it.getNext();
 				DoctorS docSubarbol=(DoctorS) subarbol.getRoot();
 //				if(subarbol.getRoot().equals(doc)){
@@ -164,6 +166,7 @@ public class AcademiaS implements AcademiaIF {
 				if(docSubarbol.getId()==doctorS.getId()){	
 					subarbol.addChild(subarbol.getChildren().size()+1, new Tree<DoctorIF>(newdoctor));
 					size++;
+					bandera=true;
 				}else{
 					
 					 encuentra(subarbol, sup, newdoctor);
