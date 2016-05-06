@@ -50,8 +50,7 @@ public class MainEPED {
 	}
 
 	
-	// No introduce el doctor en el arbol
-	
+
 	
 	private static AcademiaIF parseScenarioOne(BufferedReader dataBr) throws IOException {
 		BufferedReader br = new BufferedReader(dataBr);

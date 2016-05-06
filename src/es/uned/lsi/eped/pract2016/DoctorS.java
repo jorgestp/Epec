@@ -116,7 +116,8 @@ public class DoctorS implements DoctorIF {
 		
 		if(this.equals(arbol.getRoot())){
 			
-			return null;
+			throw new NullPointerException("el Fundador de la academia no tiene antecesores");
+		
 		}else{
 			
 			return antecesores(generations, this, arbol);
@@ -129,8 +130,10 @@ public class DoctorS implements DoctorIF {
 		
 		
 			if(tree.getRoot().equals(doctor)){
-				
-				return null;
+				//probar quitarlo
+				//antece.insert(doctor, antece.size()+1);
+			
+				return antece;
 				
 			}
 			if(generations==0){
@@ -141,15 +144,21 @@ public class DoctorS implements DoctorIF {
 				
 				DoctorS doc= ((DoctorS) doctor).getSupervisor();
 				
-				//Falla a partir de aqui
-				antece= antecesores(generations-1, doc, tree);
-				antece.insert(doc, antece.size());
-				return antece;
+				if(doc!=null){
+					
+					
+					antece= antecesores(generations-1, doc, tree);
+					antece.insert(doc, antece.size());
+					return antece;
+				}
+				else{
+					
+					throw new NullPointerException("el metodo getSupervisor está devolviendo null");
+				}
+				
 				
 				
 			}
-			
-
 		}
 	
 	
