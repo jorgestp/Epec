@@ -49,7 +49,7 @@ public interface DoctorIF {
 	public CollectionIF<DoctorIF> getSiblings();
 	
 	
-	
+	public int getId();
 	
 	
 	

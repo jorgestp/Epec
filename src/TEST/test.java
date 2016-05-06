@@ -13,45 +13,124 @@ public class test {
 	public static void main(String[] args) throws IOException {
 	
 		
+		DoctorC founder=new DoctorC(1);
 		
-
+		AcademiaC academiac=new AcademiaC(founder);
+		founder.setAcademia(academiac);
 		
-		AcademiaS academia=new AcademiaS();
-		DoctorS doctor=new DoctorS(1,academia);
-		academia.setFounder(doctor);
-		
-		DoctorS doctor2=new DoctorS(2,academia);
-		DoctorS doctor3=new DoctorS(3,academia);
-
-		DoctorS doctor4=new DoctorS(4,academia);
-		DoctorS doctor5=new DoctorS(5,academia);
-		DoctorS doctor6=new DoctorS(6,academia);
-		DoctorS doctor7=new DoctorS(7,academia);
-		DoctorS doctor8=new DoctorS(8,academia);
-		
-		academia.addDoctor(doctor2, doctor);
-		
-		academia.addDoctor(doctor3, doctor2);
+		DoctorC doctor2=new DoctorC(2, academiac);
+		DoctorC doctor3=new DoctorC(3, academiac);
+		DoctorC doctor4=new DoctorC(4, academiac);
+		DoctorC doctor5=new DoctorC(5, academiac);
+		DoctorC doctor6=new DoctorC(6, academiac);
+		DoctorC doctor7=new DoctorC(7, academiac);
+		DoctorC doctor8=new DoctorC(8, academiac);
+		DoctorC doctor9=new DoctorC(9, academiac);
 		
 		
+		academiac.addDoctor(doctor2, founder);
+	//	academiac.addDoctor(doctor3, founder);
+	//	academiac.addDoctor(doctor4, founder);
+	//	academiac.addDoctor(doctor8, founder);
 		
-		academia.addDoctor(doctor4, doctor2);
-		academia.addDoctor(doctor6, doctor2);
+		academiac.addDoctor(doctor7, doctor2);
 		
-		academia.addDoctor(doctor7, doctor3);
+//		academiac.addDoctor(doctor5, doctor3);
+//		academiac.addDoctor(doctor6, doctor3);
+//		
+//		academiac.addDoctor(doctor5, doctor4);
+//		academiac.addDoctor(doctor6, doctor4);
+//		academiac.addDoctor(doctor7, doctor4);
+//		
+//		academiac.addDoctor(doctor7, doctor5);
+//		
+//		academiac.addDoctor(doctor9, doctor6);
+//		
+		academiac.addDoctor(doctor9, doctor7);
 		
-		academia.addDoctor(doctor5, doctor4);
 		
-
 		
+		ListIF<DoctorIF> list=academiac.getLista();
+		IteratorIF<DoctorIF> it=list.iterator();
+		
+		while(it.hasNext()){
+			
+			DoctorIF doc=it.getNext();
+			
 	
-		DoctorIF doc= academia.getDoctor(doctor7.getId());
-		
-		System.out.println(" el doctor buscado es el " + ((DoctorS) doc).getId());
-		
-		
+			
+			System.out.print(doc.getId() + ", ");
+		}
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+//		AcademiaS academia=new AcademiaS();
+//		DoctorS doctor=new DoctorS(1,academia);
+//		academia.setFounder(doctor);
+//		
+//		DoctorS doctor2=new DoctorS(2,academia);
+//		DoctorS doctor3=new DoctorS(3,academia);
+//
+//		DoctorS doctor4=new DoctorS(4,academia);
+//		DoctorS doctor5=new DoctorS(5,academia);
+//		DoctorS doctor6=new DoctorS(6,academia);
+//		DoctorS doctor7=new DoctorS(7,academia);
+//		DoctorS doctor8=new DoctorS(8,academia);
+//		
+//		academia.addDoctor(doctor2, doctor);
+//		
+//		academia.addDoctor(doctor3, doctor2);
+//		
+//		
+//		
+//		academia.addDoctor(doctor4, doctor2);
+//		academia.addDoctor(doctor6, doctor2);
+//		
+//		academia.addDoctor(doctor7, doctor3);
+//		
+//		academia.addDoctor(doctor5, doctor4);
+//		
+//
+//		
+//	
+//		DoctorIF doc= academia.getDoctor(doctor7.getId());
+//		
+//		System.out.println(" el doctor buscado es el " + ((DoctorS) doc).getId());
+//		
+//		
+//		
+//		
 		
 		
 		

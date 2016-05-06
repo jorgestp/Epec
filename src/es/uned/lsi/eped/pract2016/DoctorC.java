@@ -1,7 +1,6 @@
 package es.uned.lsi.eped.pract2016;
 
-import es.uned.lsi.eped.DataStructures.CollectionIF;
-import es.uned.lsi.eped.DataStructures.List;
+import es.uned.lsi.eped.DataStructures.*;
 
 public class DoctorC implements DoctorIF {
 	
@@ -9,7 +8,7 @@ public class DoctorC implements DoctorIF {
 	private int id;
 	private AcademiaC academia;
 	
-	private CollectionIF<DoctorIF> students;
+	private ListIF<DoctorIF> students;
 	
 	
 	public DoctorC(int id, AcademiaC academia){
@@ -28,6 +27,12 @@ public class DoctorC implements DoctorIF {
 		students=supervisors;
 	}	
 	
+
+	public DoctorC(int iD2) {
+		id=iD2;
+
+	}
+	
 	
 	public int getId() {
 		return id;
@@ -43,13 +48,10 @@ public class DoctorC implements DoctorIF {
 
 	public void setStudents(CollectionIF<DoctorIF> students) {
 		
-		this.students = students;
+		this.students = (ListIF<DoctorIF>) students;
 	}
 
-	public DoctorC(int iD2) {
-		id=iD2;
-
-	}
+	
 
 	
 
@@ -72,10 +74,10 @@ public class DoctorC implements DoctorIF {
 		return null;
 	}
 
-	@Override
+	
+	
 	public CollectionIF<DoctorIF> getStudents() {
-		// TODO Auto-generated method stub
-		return null;
+		return students;
 	}
 
 	@Override

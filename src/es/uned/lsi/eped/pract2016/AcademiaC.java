@@ -4,18 +4,18 @@ import es.uned.lsi.eped.DataStructures.*;
 
 public class AcademiaC implements AcademiaIF {
 
-	private ListIF<DoctorC> lista;
+	private ListIF<DoctorIF> lista;
 	
 	
 	
 	public AcademiaC(){
 		
-		lista=new List<DoctorC>();
+		lista=new List<DoctorIF>();
 	}
 	
 	public AcademiaC(DoctorIF founder){
 		
-		lista=new List<DoctorC>();
+		lista=new List<DoctorIF>();
 		
 		lista.insert((DoctorC) founder, lista.size()+1);
 		
@@ -70,9 +70,38 @@ public class AcademiaC implements AcademiaIF {
 	@Override
 	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
 
+		ListIF<DoctorIF> aux= new List<DoctorIF>();
+
+		IteratorIF<DoctorIF> it=lista.iterator();
+		while(it.hasNext()){
+			DoctorIF doc=it.getNext();
+			
+			if(doc.equals(supervisor)){
+				
+				aux= (ListIF<DoctorIF>) supervisor.getStudents();
+				
+				aux.insert(newDoctor, aux.size()+1);	
+				
+				((DoctorC) newDoctor).setStudents(aux);
+	
+			}else{
+				
+				lista.insert(doc, lista.size()+1);
+			}
+			
+		}
 		
 		
 		
+		
+	}
+
+	public ListIF<DoctorIF> getLista() {
+		return lista;
+	}
+
+	public void setLista(ListIF<DoctorIF> lista) {
+		this.lista = lista;
 	}
 
 	@Override
