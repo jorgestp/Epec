@@ -9,6 +9,7 @@ import es.uned.lsi.eped.DataStructures.*;
 public class AcademiaC implements AcademiaIF {
 
 	private ListIF<DoctorIF> supervisors;
+	private int size;
 	
 	
 	
@@ -18,6 +19,7 @@ public class AcademiaC implements AcademiaIF {
 		
 		supervisors= new List<DoctorIF>();
 		supervisors.insert(founder, supervisors.size()+1);
+		size=1;
 		
 	}
 
@@ -67,21 +69,45 @@ public class AcademiaC implements AcademiaIF {
 
 
 
-	@Override
+	//FUNCIONA
 	public DoctorIF getFounder() {
 	
-		return null;
+		DoctorIF doc= supervisors.get(1);
+		
+		return doc;
 	}
 
 
 
 
 
-	@Override
+	//FUNCIONA
 	public DoctorIF getDoctor(int id) {
+		
+	IteratorIF<DoctorIF> it = supervisors.iterator();
+		
+		while(it.hasNext()){
+			
+			DoctorIF aux=it.getNext();
+			
+			if(aux.getId()==id){
+				
+				
+				return aux;
+				
+			}
+			
+			
+		}
 		
 		return null;
 	}
+	
+		
+		
+		
+		
+	
 
 
 
@@ -90,21 +116,22 @@ public class AcademiaC implements AcademiaIF {
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 
 
 
 
-	@Override
+	//FUNCIONA!
 	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
 	
-		DoctorC sup=(DoctorC) encuentraDoctor(supervisor);
+		DoctorC sup=(DoctorC) findDoctor(supervisor);
 		
 		ListIF<DoctorIF> listStudents=(ListIF<DoctorIF>) sup.getStudents();
 		
 		listStudents.insert(newDoctor, listStudents.size()+1);
+		
 		
 		sup.setStudents(listStudents);
 		
@@ -114,6 +141,7 @@ public class AcademiaC implements AcademiaIF {
 			supervisors.insert(newDoctor, supervisors.size()+1);
 			
 		}
+		
 		
 		
 		
@@ -132,34 +160,28 @@ public class AcademiaC implements AcademiaIF {
 				return true;
 			}
 		}
+		size++;
 		return false;
 	}
 
 
 
-
-
-	public ListIF<DoctorIF> getSupervisors() {
-		return supervisors;
-	}
-
-
-
-
-
-
-
-	@Override
+	//FUNCIONA PERO NO SE SI ES LO QUE SE PIDE O NO.
 	public void addSupervision(DoctorIF student, DoctorIF supervisor) {
 		
+//		DoctorC stu=(DoctorC) findDoctor(student);
+		DoctorC sup=(DoctorC) findDoctor(supervisor);
 		
+		sup.addStudent(student);
+			
+			
 		
 		
 		
 	}
 	
 	
-	private DoctorIF encuentraDoctor(DoctorIF doctor){
+	private DoctorIF findDoctor(DoctorIF doctor){
 		
 		
 		boolean bandera=false;
@@ -180,6 +202,16 @@ public class AcademiaC implements AcademiaIF {
 		}
 		
 		return null;
+	}
+
+
+
+
+
+
+
+	public ListIF<DoctorIF> getSupervisors() {
+		return supervisors;
 	}
 
 

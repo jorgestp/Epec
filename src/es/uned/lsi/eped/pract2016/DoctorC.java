@@ -91,8 +91,18 @@ public class DoctorC implements DoctorIF {
 		return id;
 	}
 	
+	
+	//metodo para que no de error en la linea 60 de ParseCScenarario
+	public CollectionIF<DoctorIF> getSupervisor(){
+		
+		return null;
+	}
 
 	
+	void addStudent(DoctorIF newDoctor){
+		
+		students.insert(newDoctor, students.size()+1);
+	}
 
 
 }

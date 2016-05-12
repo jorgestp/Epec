@@ -28,6 +28,7 @@ public class test {
 		DoctorC doctor7= new DoctorC(7, academiac);
 		DoctorC doctor8= new DoctorC(8, academiac);
 		DoctorC doctor9= new DoctorC(9, academiac);
+		DoctorC doctor10= new DoctorC(10, academiac);
 		
 		academiac.addDoctor(doctor2, founder);
 		academiac.addDoctor(doctor3, founder);
@@ -49,6 +50,10 @@ public class test {
 		academiac.addDoctor(doctor9, doctor7);
 		
 
+		academiac.addSupervision(doctor3, doctor2);
+		
+		
+		
 		ListIF<DoctorIF> list=academiac.getSupervisors();
 		IteratorIF<DoctorIF> it=list.iterator();
 		
@@ -57,17 +62,21 @@ public class test {
 			DoctorIF aux=it.getNext();
 			
 			System.out.print(aux.getId() + " ,");
+			
 		}
 		
 		
+		System.out.println();	
 		
 		
+		 DoctorIF doctor=academiac.getDoctor(6);
+		System.out.println(" El doctor con el identificador 6 es; Doctor-" + doctor.getId());	
+
+		
+		System.out.println(" El doctor fundador es " + academiac.getFounder().getId());	
 		
 		
-		
-		
-		
-		
+		System.out.println(" El tamaño de la academia es: " + academiac.size());	
 		
 		
 		
