@@ -7,7 +7,7 @@ public class List<T> extends Collection<T> implements ListIF<T> {
 		super();
 	}
 	//constructor por copia
-	List(ListIF<T> L){
+	public List(ListIF<T> L){
 		super();
 		IteratorIF<T> iterator = L.iterator();
 		while (iterator.hasNext()){

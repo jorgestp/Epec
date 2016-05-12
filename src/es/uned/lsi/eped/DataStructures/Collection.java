@@ -10,7 +10,7 @@ public class Collection<T> implements CollectionIF<T> {
 		size = 0;
 	}
 	//constructor por parámetro: colección unitaria
-	Collection(T e){
+	 public Collection(T e){
 		firstNode = new Node<T>(e);
 		size = 1;
 	}

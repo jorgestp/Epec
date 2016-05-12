@@ -16,56 +16,48 @@ public class test {
 		DoctorC founder=new DoctorC(1);
 		
 		AcademiaC academiac=new AcademiaC(founder);
-		founder.setAcademia(academiac);
 		
-		DoctorC doctor2=new DoctorC(2, academiac);
-		DoctorC doctor3=new DoctorC(3, academiac);
-		DoctorC doctor4=new DoctorC(4, academiac);
-		DoctorC doctor5=new DoctorC(5, academiac);
-		DoctorC doctor6=new DoctorC(6, academiac);
-		DoctorC doctor7=new DoctorC(7, academiac);
-		DoctorC doctor8=new DoctorC(8, academiac);
-		DoctorC doctor9=new DoctorC(9, academiac);
-		
+		founder.setAcademiac(academiac);
+
+
+		DoctorC doctor2= new DoctorC(2, academiac);
+		DoctorC doctor3= new DoctorC(3, academiac);
+		DoctorC doctor4= new DoctorC(4, academiac);
+		DoctorC doctor5= new DoctorC(5, academiac);
+		DoctorC doctor6= new DoctorC(6, academiac);
+		DoctorC doctor7= new DoctorC(7, academiac);
+		DoctorC doctor8= new DoctorC(8, academiac);
+		DoctorC doctor9= new DoctorC(9, academiac);
 		
 		academiac.addDoctor(doctor2, founder);
-	//	academiac.addDoctor(doctor3, founder);
-	//	academiac.addDoctor(doctor4, founder);
-	//	academiac.addDoctor(doctor8, founder);
+		academiac.addDoctor(doctor3, founder);
+		academiac.addDoctor(doctor4, founder);
+		academiac.addDoctor(doctor8, founder);
 		
 		academiac.addDoctor(doctor7, doctor2);
 		
-//		academiac.addDoctor(doctor5, doctor3);
-//		academiac.addDoctor(doctor6, doctor3);
-//		
-//		academiac.addDoctor(doctor5, doctor4);
-//		academiac.addDoctor(doctor6, doctor4);
-//		academiac.addDoctor(doctor7, doctor4);
-//		
-//		academiac.addDoctor(doctor7, doctor5);
-//		
-//		academiac.addDoctor(doctor9, doctor6);
-//		
+		
+		academiac.addDoctor(doctor5, doctor3);
+		academiac.addDoctor(doctor6, doctor3);
+		
+		academiac.addDoctor(doctor5, doctor4);
+		academiac.addDoctor(doctor6, doctor4);
+		academiac.addDoctor(doctor7, doctor4);
+		
+		academiac.addDoctor(doctor9, doctor6);
+		
 		academiac.addDoctor(doctor9, doctor7);
 		
-		
-		
-		ListIF<DoctorIF> list=academiac.getLista();
+
+		ListIF<DoctorIF> list=academiac.getSupervisors();
 		IteratorIF<DoctorIF> it=list.iterator();
 		
 		while(it.hasNext()){
 			
-			DoctorIF doc=it.getNext();
+			DoctorIF aux=it.getNext();
 			
-	
-			
-			System.out.print(doc.getId() + ", ");
+			System.out.print(aux.getId() + " ,");
 		}
-		
-		
-		
-		
-		
 		
 		
 		

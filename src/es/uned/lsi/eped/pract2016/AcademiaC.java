@@ -1,32 +1,41 @@
 package es.uned.lsi.eped.pract2016;
 
+
+
 import es.uned.lsi.eped.DataStructures.*;
+
+
 
 public class AcademiaC implements AcademiaIF {
 
-	private ListIF<DoctorIF> lista;
+	private ListIF<DoctorIF> supervisors;
 	
 	
 	
-	public AcademiaC(){
-		
-		lista=new List<DoctorIF>();
-	}
+	
 	
 	public AcademiaC(DoctorIF founder){
 		
-		lista=new List<DoctorIF>();
-		
-		lista.insert((DoctorC) founder, lista.size()+1);
+		supervisors= new List<DoctorIF>();
+		supervisors.insert(founder, supervisors.size()+1);
 		
 	}
+
+
 	
 	
+
+
+
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
+
+
 
 	@Override
 	public boolean contains(DoctorIF e) {
@@ -34,11 +43,19 @@ public class AcademiaC implements AcademiaIF {
 		return false;
 	}
 
+
+
+
+
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
-
+		
 	}
+
+
+
+
 
 	@Override
 	public IteratorIF<DoctorIF> iterator() {
@@ -46,20 +63,29 @@ public class AcademiaC implements AcademiaIF {
 		return null;
 	}
 
+
+
+
+
 	@Override
 	public DoctorIF getFounder() {
-
-		
-		
-		
+	
 		return null;
 	}
+
+
+
+
 
 	@Override
 	public DoctorIF getDoctor(int id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
+
+
+
+
 
 	@Override
 	public int size() {
@@ -67,27 +93,25 @@ public class AcademiaC implements AcademiaIF {
 		return 0;
 	}
 
+
+
+
+
 	@Override
 	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
-
-		ListIF<DoctorIF> aux= new List<DoctorIF>();
-
-		IteratorIF<DoctorIF> it=lista.iterator();
-		while(it.hasNext()){
-			DoctorIF doc=it.getNext();
-			
-			if(doc.equals(supervisor)){
-				
-				aux= (ListIF<DoctorIF>) supervisor.getStudents();
-				
-				aux.insert(newDoctor, aux.size()+1);	
-				
-				((DoctorC) newDoctor).setStudents(aux);
 	
-			}else{
-				
-				lista.insert(doc, lista.size()+1);
-			}
+		DoctorC sup=(DoctorC) encuentraDoctor(supervisor);
+		
+		ListIF<DoctorIF> listStudents=(ListIF<DoctorIF>) sup.getStudents();
+		
+		listStudents.insert(newDoctor, listStudents.size()+1);
+		
+		sup.setStudents(listStudents);
+		
+		if(!beInSupervisors(newDoctor)){
+			
+			
+			supervisors.insert(newDoctor, supervisors.size()+1);
 			
 		}
 		
@@ -95,24 +119,151 @@ public class AcademiaC implements AcademiaIF {
 		
 		
 	}
-
-	public ListIF<DoctorIF> getLista() {
-		return lista;
+	
+	private boolean beInSupervisors(DoctorIF newDoctor){
+		
+		IteratorIF<DoctorIF> it=supervisors.iterator();
+		
+		while(it.hasNext()){
+			
+			DoctorIF aux=it.getNext();
+			if(aux.getId()==newDoctor.getId()){
+				
+				return true;
+			}
+		}
+		return false;
 	}
 
-	public void setLista(ListIF<DoctorIF> lista) {
-		this.lista = lista;
+
+
+
+
+	public ListIF<DoctorIF> getSupervisors() {
+		return supervisors;
 	}
+
+
+
+
+
+
 
 	@Override
 	public void addSupervision(DoctorIF student, DoctorIF supervisor) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void setFounder(DoctorC founder) {
-
+		
+		
+		
+		
 		
 	}
+	
+	
+	private DoctorIF encuentraDoctor(DoctorIF doctor){
+		
+		
+		boolean bandera=false;
+		IteratorIF<DoctorIF> it = supervisors.iterator();
+		
+		while(it.hasNext() && !bandera){
+			
+			DoctorIF aux=it.getNext();
+			
+			if(aux.equals(doctor)){
+				
+				bandera=true;
+				return aux;
+				
+			}
+			
+			
+		}
+		
+		return null;
+	}
+
 
 }
+
+
+
+
+	
+//	private DoctorIF encuentraDoctor(DoctorIF doctor, int id){
+//		
+//		if(doctor.equals(new DoctorC(id))){
+//			
+//			return doctor;
+//		}else{
+//			
+//			CollectionIF<DoctorIF> students=doctor.getStudents();
+//			
+//			if(students == null || students.isEmpty()){
+//				
+//				return null;
+//			}else{
+//				
+//				IteratorIF<DoctorIF> it=students.iterator();
+//				
+//				while(it.hasNext()){
+//					
+//					DoctorIF doc=encuentraDoctor(it.getNext(), id);
+//					return doc;
+//				}
+//			}
+//			return null;
+//		}
+//		
+//		
+//
+//
+//	}
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+//	private DoctorC getDoctor(DoctorIF newDoctor) {
+//		
+//		
+//		return (DoctorC) encuentraDoctor(founder, newDoctor.getId());
+//	}
+
+
+//	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
+//		
+//		
+//
+//		IteratorIF<DoctorIF> it=supervisors.iterator();
+//		
+//		boolean bandera=false;
+//		while(it.hasNext() && !bandera){
+//			DoctorC doc=(DoctorC) it.getNext();
+//			
+//			if(doc.getId() == supervisor.getId()){
+//				
+//			
+//
+//				((DoctorC) supervisor).addStudent(newDoctor);
+//				
+//				bandera=true;
+//			
+//			}
+//			
+//		}
+//		
+//	}
+		
+
+
+

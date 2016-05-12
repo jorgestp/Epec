@@ -6,67 +6,61 @@ public class DoctorC implements DoctorIF {
 	
 	
 	private int id;
-	private AcademiaC academia;
-	
+	private AcademiaC academiac;
 	private ListIF<DoctorIF> students;
 	
 	
-	public DoctorC(int id, AcademiaC academia){
+	public DoctorC(int id, AcademiaC academiac){
 		
-		this.id=id;
-		this.academia=academia;
-		students=new List<DoctorIF>();
-	}
-	
-	public DoctorC(int iDDoctor, AcademiaIF a, List<DoctorIF> supervisors) {
-		
-	id=iDDoctor;
-		
-		academia=(AcademiaC) a;
-		
-		students=supervisors;
-	}	
-	
-
-	public DoctorC(int iD2) {
-		id=iD2;
-
-	}
-	
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
 		this.id = id;
+		this.academiac = academiac;
+		students = new List<DoctorIF>();
 	}
-
-	public AcademiaC getAcademia() {
-		return academia;
-	}
-
-	public void setStudents(CollectionIF<DoctorIF> students) {
+	
+	public DoctorC(int id){
 		
-		this.students = (ListIF<DoctorIF>) students;
-	}
-
-	
-
-	
-
-
-	
-
-	//por hacer tb
-	public CollectionIF<DoctorIF> getSupervisor(){
-		
-		return null;
+		this.id = id;
+		students = new List<DoctorIF>();
 	}
 	
 	
 	
 	
+	
+
+	public AcademiaC getAcademiac() {
+		return academiac;
+	}
+
+
+
+
+
+
+	public void setAcademiac(AcademiaC academiac) {
+		this.academiac = academiac;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setStudents(ListIF<DoctorIF> students) {
+		this.students = students;
+	}
+
+
+
+
+
 
 	@Override
 	public CollectionIF<DoctorIF> getAncestors(int generations) {
@@ -74,8 +68,7 @@ public class DoctorC implements DoctorIF {
 		return null;
 	}
 
-	
-	
+	@Override
 	public CollectionIF<DoctorIF> getStudents() {
 		return students;
 	}
@@ -92,14 +85,14 @@ public class DoctorC implements DoctorIF {
 		return null;
 	}
 
-	public List<DoctorIF> getSupervisors() {
+	@Override
+	public int getId() {
 		// TODO Auto-generated method stub
-		return null;
+		return id;
 	}
+	
 
-	public void setAcademia(AcademiaC a) {
+	
 
-		academia=a;
-	}
 
 }
