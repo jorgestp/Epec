@@ -62,27 +62,125 @@ public class DoctorC implements DoctorIF {
 
 
 
-	@Override
+	
 	public CollectionIF<DoctorIF> getAncestors(int generations) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	//FUNCIONA
 	public CollectionIF<DoctorIF> getStudents() {
 		return students;
 	}
 
-	@Override
+	
 	public CollectionIF<DoctorIF> getDescendants(int generations) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+	
+	//Funciona
 	public CollectionIF<DoctorIF> getSiblings() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ListIF<DoctorIF> list = new List<DoctorIF>();
+		
+		list= (ListIF<DoctorIF>) beSiblings(this, academiac.getSupervisors(), 1);
+		
+		return reverseRepetitions(list);
+	}
+	
+	private CollectionIF<DoctorIF> beSiblings( DoctorIF doctor, ListIF<DoctorIF> supervisors, int index){
+		
+		ListIF<DoctorIF> list = new List<DoctorIF>();
+		
+		if(index> supervisors.size()){
+			
+			return list;
+		}else{
+			
+			DoctorIF doc=supervisors.get(index);
+			
+			if(beInList(doc.getStudents(), doctor)){
+				
+				ListIF<DoctorIF> hermanos=(ListIF<DoctorIF>) doc.getStudents();
+				
+				list=(ListIF<DoctorIF>) beSiblings(doctor, supervisors, index+1);
+				
+				list=includeInlist(list, hermanos, doctor);
+				
+				return list;
+				
+			}else{
+				
+				list=(ListIF<DoctorIF>) beSiblings(doctor, supervisors, index+1);
+			}
+				
+
+		
+		return list;
+		
+	}
+	}
+
+
+
+	private ListIF<DoctorIF> includeInlist(ListIF<DoctorIF> list, ListIF<DoctorIF> hermanos, DoctorIF doctor) {
+		
+		IteratorIF<DoctorIF> it=hermanos.iterator();
+		
+		while(it.hasNext()){
+			
+			DoctorIF doc=it.getNext();
+			
+			if(!doc.equals(doctor)){
+				
+				list.insert(doc, list.size()+1);
+			}
+		}
+		
+		return list;
+	}
+
+	private boolean beInList(CollectionIF<DoctorIF> collection, DoctorIF doctor) {
+	IteratorIF<DoctorIF> it=collection.iterator();
+		
+		while(it.hasNext()){
+			
+			DoctorIF aux=it.getNext();
+			
+			if(aux.getId()==doctor.getId()){
+				
+				return true;
+			}
+		}
+
+	
+		return false;
+	}
+	
+	private CollectionIF<DoctorIF> reverseRepetitions(ListIF<DoctorIF> hermanos){
+		
+		ListIF<DoctorIF> list = new List<DoctorIF>();
+		
+		list.insert(hermanos.get(1), list.size()+1);
+		
+		IteratorIF<DoctorIF> itHermanos=hermanos.iterator();
+		
+		while(itHermanos.hasNext()){
+			
+			DoctorIF aux=itHermanos.getNext();
+			
+			if(!beInList(list, aux)){
+				
+				list.insert(aux, list.size()+1);
+			}
+		}
+		
+		
+		return list ;
+		
+		
 	}
 
 	@Override
@@ -93,7 +191,8 @@ public class DoctorC implements DoctorIF {
 	
 	
 	//metodo para que no de error en la linea 60 de ParseCScenarario
-	public CollectionIF<DoctorIF> getSupervisor(){
+	public CollectionIF<DoctorIF> getSupervisors(){
+		
 		
 		return null;
 	}

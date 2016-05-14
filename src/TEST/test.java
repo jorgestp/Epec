@@ -81,6 +81,17 @@ public class test {
 		
 		
 		
+		ListIF<DoctorIF> nuevalista=(ListIF<DoctorIF>) doctor5.getSiblings();
+		
+		IteratorIF<DoctorIF> it3=nuevalista.iterator();
+		
+		while(it3.hasNext()){
+			
+			DoctorIF aux=it3.getNext();
+			
+			System.out.println("-" + aux.getId());
+		}
+		
 		
 		
 		

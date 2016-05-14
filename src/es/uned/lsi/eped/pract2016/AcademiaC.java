@@ -103,17 +103,9 @@ public class AcademiaC implements AcademiaIF {
 		return null;
 	}
 	
-		
-		
-		
-		
-	
 
 
-
-
-
-	@Override
+	//FUNCIONA
 	public int size() {
 		// TODO Auto-generated method stub
 		return size;
@@ -169,7 +161,7 @@ public class AcademiaC implements AcademiaIF {
 	//FUNCIONA PERO NO SE SI ES LO QUE SE PIDE O NO.
 	public void addSupervision(DoctorIF student, DoctorIF supervisor) {
 		
-//		DoctorC stu=(DoctorC) findDoctor(student);
+
 		DoctorC sup=(DoctorC) findDoctor(supervisor);
 		
 		sup.addStudent(student);
@@ -205,11 +197,6 @@ public class AcademiaC implements AcademiaIF {
 	}
 
 
-
-
-
-
-
 	public ListIF<DoctorIF> getSupervisors() {
 		return supervisors;
 	}
@@ -217,85 +204,6 @@ public class AcademiaC implements AcademiaIF {
 
 }
 
-
-
-
-	
-//	private DoctorIF encuentraDoctor(DoctorIF doctor, int id){
-//		
-//		if(doctor.equals(new DoctorC(id))){
-//			
-//			return doctor;
-//		}else{
-//			
-//			CollectionIF<DoctorIF> students=doctor.getStudents();
-//			
-//			if(students == null || students.isEmpty()){
-//				
-//				return null;
-//			}else{
-//				
-//				IteratorIF<DoctorIF> it=students.iterator();
-//				
-//				while(it.hasNext()){
-//					
-//					DoctorIF doc=encuentraDoctor(it.getNext(), id);
-//					return doc;
-//				}
-//			}
-//			return null;
-//		}
-//		
-//		
-//
-//
-//	}
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-//	private DoctorC getDoctor(DoctorIF newDoctor) {
-//		
-//		
-//		return (DoctorC) encuentraDoctor(founder, newDoctor.getId());
-//	}
-
-
-//	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
-//		
-//		
-//
-//		IteratorIF<DoctorIF> it=supervisors.iterator();
-//		
-//		boolean bandera=false;
-//		while(it.hasNext() && !bandera){
-//			DoctorC doc=(DoctorC) it.getNext();
-//			
-//			if(doc.getId() == supervisor.getId()){
-//				
-//			
-//
-//				((DoctorC) supervisor).addStudent(newDoctor);
-//				
-//				bandera=true;
-//			
-//			}
-//			
-//		}
-//		
-//	}
-		
 
 
 

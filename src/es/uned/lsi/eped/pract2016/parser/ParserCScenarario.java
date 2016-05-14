@@ -57,6 +57,8 @@ class ParserCScenarario implements OperationsParser {
 	public void getDirectors(AcademiaIF academia, int doctorId) {
 		DoctorC doctor = (DoctorC) academia.getDoctor(doctorId);
 		if (doctor != null) {
+			
+			//se ha creado el metodo getSupervisors en DOctorC para evitar que dé error
 			CollectionIF<DoctorIF> supervisors = doctor.getSupervisors();
 			System.out.println(String.format("Tesis de \"%d\" codirigida por %s", doctorId,
 					getStringForElementsIn(supervisors.iterator())));
