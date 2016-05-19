@@ -77,8 +77,51 @@ public class DoctorC implements DoctorIF {
 	@Override
 	public CollectionIF<DoctorIF> getAncestors(int generations) {
 		
-		return null;
+		return antece(this, generations, new List<DoctorIF>());
 	}
+	
+	private CollectionIF<DoctorIF> antece(DoctorIF doc, int generation, ListIF<DoctorIF> list){
+		
+		
+		
+		if(generation ==1){
+			
+			ListIF<DoctorIF> list2= (ListIF<DoctorIF>) ((DoctorC) doc).getSupervisors();
+			IteratorIF<DoctorIF> it=( (DoctorC) doc).getSupervisors().iterator();
+			while(it.hasNext()){
+				
+				DoctorIF aux=it.getNext();
+				list.insert(aux, list.size()+1);
+			}
+			return list;
+		}
+		else{
+			
+			//recorro academia
+			ListIF<DoctorIF> sup=academiac.getSupervisors();
+			
+			IteratorIF<DoctorIF> it=sup.iterator();
+			
+			while(it.hasNext()){
+				
+				DoctorIF aux=it.getNext();
+				
+				if(beInList(aux.getStudents(), doc)){
+					list.insert(aux, list.size()+1);
+					list=(ListIF<DoctorIF>) antece(aux, generation-1, list);
+					
+					
+					
+				}
+				
+			}
+			return reverseRepetitions(list);
+		}
+		
+		
+		
+	}
+	
 
 	
 	
@@ -94,19 +137,21 @@ public class DoctorC implements DoctorIF {
 			return listaAretornar;
 		}
 		if(generations==1){
-			return this.students;
+			
+			listaAretornar=(ListIF<DoctorIF>) this.students;
+			return listaAretornar;
 		}
 		
 		IteratorIF<DoctorIF> it=students.iterator();
 		while(it.hasNext()){
 			DoctorIF aux=it.getNext();
-			ListIF<DoctorIF> list2 = (ListIF<DoctorIF>) getDescendants(generations-1);
+			ListIF<DoctorIF> list2 = (ListIF<DoctorIF>) aux.getDescendants(generations-1);
 			
 				IteratorIF<DoctorIF> it2=list2.iterator();
 				
-					while(it.hasNext()){
+					while(it2.hasNext()){
 						
-						DoctorIF aux2=it.getNext();
+						DoctorIF aux2=it2.getNext();
 						
 						if(!listaAretornar.contains(aux2)){
 							

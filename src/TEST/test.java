@@ -26,31 +26,31 @@ public class test {
 		DoctorC doctor5= new DoctorC(5, academiac);
 		DoctorC doctor6= new DoctorC(6, academiac);
 		DoctorC doctor7= new DoctorC(7, academiac);
-		DoctorC doctor8= new DoctorC(8, academiac);
-		DoctorC doctor9= new DoctorC(9, academiac);
-		DoctorC doctor10= new DoctorC(10, academiac);
+
 		
 		academiac.addDoctor(doctor2, founder);
 		academiac.addDoctor(doctor3, founder);
-		academiac.addDoctor(doctor4, founder);
-		academiac.addDoctor(doctor8, founder);
-		
-		academiac.addDoctor(doctor7, doctor2);
+		academiac.addDoctor(doctor5, founder);
 		
 		
+		academiac.addDoctor(doctor3, doctor2);
+		academiac.addDoctor(doctor4, doctor2);
+		
+		
+		
+		academiac.addDoctor(doctor7, doctor3);
 		academiac.addDoctor(doctor5, doctor3);
-		academiac.addDoctor(doctor6, doctor3);
 		
-		academiac.addDoctor(doctor5, doctor4);
 		academiac.addDoctor(doctor6, doctor4);
-		academiac.addDoctor(doctor7, doctor4);
+	
+		academiac.addDoctor(doctor6, doctor5);
 		
-		academiac.addDoctor(doctor9, doctor6);
 		
-		academiac.addDoctor(doctor9, doctor7);
+		
+		
 		
 
-		academiac.addSupervision(doctor3, doctor2);
+		
 		
 		
 		
@@ -112,11 +112,11 @@ public class test {
 		
 		System.out.println();
 		
-		ListIF<DoctorIF> antecesores=(ListIF<DoctorIF>) founder.getDescendants(2);
+		ListIF<DoctorIF> antecesores=(ListIF<DoctorIF>) doctor4.getAncestors(2);
 		
 	IteratorIF<DoctorIF> it6=antecesores.iterator();
 		
-		System.out.println("Los antecesores del doctor ; " + founder.getId());
+		System.out.println("Los antecesores del doctor ; " + doctor6.getId());
 		while(it6.hasNext()){
 			
 			DoctorIF aux=it6.getNext();
