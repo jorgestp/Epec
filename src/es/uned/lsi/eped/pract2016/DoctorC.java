@@ -105,7 +105,7 @@ public class DoctorC implements DoctorIF {
 			while(it.hasNext()){
 				
 				DoctorIF aux=it.getNext();
-				
+//				ese doctor no tiene academia.. Pero si yo le he pasado la academia a todos cuando los creo!!!
 				if(beInList(aux.getStudents(), doc)){
 					list.insert(aux, list.size()+1);
 					list=(ListIF<DoctorIF>) antece(aux, generation-1, list);
@@ -128,7 +128,7 @@ public class DoctorC implements DoctorIF {
 	
 	
 
-	
+	//FUNCIONA
 	public CollectionIF<DoctorIF> getDescendants(int generations) {
 		
 		return descen(this, generations, new List<DoctorIF>());
@@ -281,7 +281,7 @@ public class DoctorC implements DoctorIF {
 		
 	}
 
-	@Override
+	//FUNCIONA
 	public int getId() {
 		// TODO Auto-generated method stub
 		return id;
@@ -292,20 +292,19 @@ public class DoctorC implements DoctorIF {
 	public CollectionIF<DoctorIF> getSupervisors(){
 		
 		ListIF<DoctorIF> list=new List<DoctorIF>();
-		
-		IteratorIF<DoctorIF> it=academiac.getSupervisors().iterator();
-		
-		while(it.hasNext()){
+		if(academiac.getSupervisors()!=null){
+			IteratorIF<DoctorIF> it=academiac.getSupervisors().iterator();
 			
-			DoctorIF doc=it.getNext();
-			
-			if(beInList(doc.getStudents(), this)){
+			while(it.hasNext()){
 				
-				list.insert(doc, list.size()+1);			
+				DoctorIF doc=it.getNext();
+				
+				if(beInList(doc.getStudents(), this)){
+					
+					list.insert(doc, list.size()+1);			
+				}
 			}
-		}
-		
-		
+		}		
 		
 		return list;
 	}

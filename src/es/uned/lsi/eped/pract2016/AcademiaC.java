@@ -183,7 +183,7 @@ public class AcademiaC implements AcademiaIF {
 			
 			DoctorIF aux=it.getNext();
 			
-			if(aux.equals(doctor)){
+			if(aux.getId() == doctor.getId()){
 				
 				bandera=true;
 				return aux;

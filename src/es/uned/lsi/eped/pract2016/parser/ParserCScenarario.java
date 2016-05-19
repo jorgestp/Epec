@@ -6,7 +6,6 @@ import es.uned.lsi.eped.pract2016.AcademiaIF;
 import es.uned.lsi.eped.pract2016.DoctorC;
 import es.uned.lsi.eped.pract2016.DoctorIF;
 
-
 class ParserCScenarario implements OperationsParser {
 
 	@Override
@@ -15,8 +14,8 @@ class ParserCScenarario implements OperationsParser {
 		if (doctor != null) {
 			CollectionIF<DoctorIF> siblings = doctor.getSiblings();
 			IteratorIF<DoctorIF> siblingsIterator = siblings.iterator();
-			System.out.println(String.format("Los hermanos de \"%d\" son %s",
-					doctorId, getStringForElementsIn(siblingsIterator)));
+			System.out.println(
+					String.format("Los hermanos de \"%d\" son %s", doctorId, getStringForElementsIn(siblingsIterator)));
 		}
 	}
 
@@ -26,8 +25,8 @@ class ParserCScenarario implements OperationsParser {
 		if (doctor != null) {
 			CollectionIF<DoctorIF> supervisors = doctor.getDescendants(generations);
 			IteratorIF<DoctorIF> supervisorsIterator = supervisors.iterator();
-			System.out.println(String.format("Los descendientes de \"%d\" hasta %d generaciones son %s",
-					doctorId, generations, getStringForElementsIn(supervisorsIterator)));
+			System.out.println(String.format("Los descendientes de \"%d\" hasta %d generaciones son %s", doctorId,
+					generations, getStringForElementsIn(supervisorsIterator)));
 		}
 	}
 
@@ -37,8 +36,8 @@ class ParserCScenarario implements OperationsParser {
 		if (doctor != null) {
 			CollectionIF<DoctorIF> students = doctor.getStudents();
 			IteratorIF<DoctorIF> studentsIterator = students.iterator();
-			System.out.println(String.format("\"%d\" ha dirigido la tesis de %s",
-					doctorId, getStringForElementsIn(studentsIterator)));
+			System.out.println(String.format("\"%d\" ha dirigido la tesis de %s", doctorId,
+					getStringForElementsIn(studentsIterator)));
 		}
 	}
 
@@ -48,8 +47,8 @@ class ParserCScenarario implements OperationsParser {
 		if (doctor != null) {
 			CollectionIF<DoctorIF> supervisors = doctor.getAncestors(generations);
 			IteratorIF<DoctorIF> supervisorsIterator = supervisors.iterator();
-			System.out.println(String.format("Los ancestros de \"%d\" hasta %d generaciones son %s",
-					doctorId, generations, getStringForElementsIn(supervisorsIterator)));
+			System.out.println(String.format("Los ancestros de \"%d\" hasta %d generaciones son %s", doctorId,
+					generations, getStringForElementsIn(supervisorsIterator)));
 		}
 	}
 
@@ -57,8 +56,9 @@ class ParserCScenarario implements OperationsParser {
 	public void getDirectors(AcademiaIF academia, int doctorId) {
 		DoctorC doctor = (DoctorC) academia.getDoctor(doctorId);
 		if (doctor != null) {
-			
-			//se ha creado el metodo getSupervisors en DOctorC para evitar que dé error
+
+			// se ha creado el metodo getSupervisors en DOctorC para evitar que
+			// dé error
 			CollectionIF<DoctorIF> supervisors = doctor.getSupervisors();
 			System.out.println(String.format("Tesis de \"%d\" codirigida por %s", doctorId,
 					getStringForElementsIn(supervisors.iterator())));
@@ -69,13 +69,14 @@ class ParserCScenarario implements OperationsParser {
 		final StringBuilder sb = new StringBuilder();
 		while (it.hasNext()) {
 			DoctorC supervisor = (DoctorC) it.getNext();
-			sb.append("\"")
-					.append(supervisor.getId())
-					.append("\"");
-			if (it.hasNext()) {
-				sb.append(",");
+			if (supervisor != null) {
+				sb.append("\"").append(supervisor.getId()).append("\"");
+				if (it.hasNext()) {
+					sb.append(",");
+				}
+				sb.append(" ");
 			}
-			sb.append(" ");
+
 		}
 		return sb.toString();
 	}

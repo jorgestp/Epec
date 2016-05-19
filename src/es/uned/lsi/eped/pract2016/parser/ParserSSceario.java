@@ -58,7 +58,6 @@ class ParserSSceario implements OperationsParser {
 	public void getDirectors(AcademiaIF academia, int doctorId) {
 		
 		DoctorS doctor = (DoctorS) academia.getDoctor(doctorId);
-		//No esta funcionando bien el getDoctor vale lo tengo wue modificar. Sip
 		
 		if (doctor != null) {
 			

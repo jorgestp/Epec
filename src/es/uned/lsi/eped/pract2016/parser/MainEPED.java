@@ -117,14 +117,20 @@ public class MainEPED {
 			System.out.println("Should be bigger than zero");
 		} else {
 			boolean finished = false;
-			DoctorIF founder = new DoctorC(founderId);
-			AcademiaIF academiaIF = new AcademiaC(founder);
+//			DoctorIF founder = new DoctorC(founderId);
+//			AcademiaIF academiaIF = new AcademiaC(founder);
+			
+			DoctorC founder=new DoctorC(1);
+			
+			AcademiaC academiaIF=new AcademiaC(founder);
+			
+			founder.setAcademiac(academiaIF);
 			while (!finished) {
 				String line = br.readLine();
 				if (line != null) {
 					int doctorId = getNextStudent(line);
 					List<Integer> supervisorIds = getNextSupervisors(line);
-					DoctorC newDoctor = new DoctorC(doctorId);
+					DoctorC newDoctor = new DoctorC(doctorId, (AcademiaC) academiaIF);
 					academiaIF.addDoctor(newDoctor, new DoctorC(supervisorIds.get(0)));
 					for (int i = 1; i < supervisorIds.size(); i++) {
 						academiaIF.addSupervision(newDoctor, new DoctorC(supervisorIds.get(i)));
