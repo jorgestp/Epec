@@ -1,5 +1,7 @@
 package es.uned.lsi.eped.pract2016;
 
+import org.w3c.dom.stylesheets.LinkStyle;
+
 import es.uned.lsi.eped.DataStructures.*;
 
 public class DoctorC implements DoctorIF {
@@ -7,7 +9,7 @@ public class DoctorC implements DoctorIF {
 	
 	private int id;
 	private AcademiaC academiac;
-	private ListIF<DoctorIF> students;
+	private CollectionIF<DoctorIF> students;
 	
 	
 	public DoctorC(int id, AcademiaC academiac){
@@ -63,20 +65,59 @@ public class DoctorC implements DoctorIF {
 
 
 	
-	public CollectionIF<DoctorIF> getAncestors(int generations) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
 
 	//FUNCIONA
 	public CollectionIF<DoctorIF> getStudents() {
 		return students;
 	}
+	
+	
+	@Override
+	public CollectionIF<DoctorIF> getAncestors(int generations) {
+		
+		return null;
+	}
+
+	
+	
+	
+	
 
 	
 	public CollectionIF<DoctorIF> getDescendants(int generations) {
-		// TODO Auto-generated method stub
-		return null;
+
+		ListIF<DoctorIF> listaAretornar = new List<DoctorIF>();
+		
+		if(generations==0){
+			return listaAretornar;
+		}
+		if(generations==1){
+			return this.students;
+		}
+		
+		IteratorIF<DoctorIF> it=students.iterator();
+		while(it.hasNext()){
+			DoctorIF aux=it.getNext();
+			ListIF<DoctorIF> list2 = (ListIF<DoctorIF>) getDescendants(generations-1);
+			
+				IteratorIF<DoctorIF> it2=list2.iterator();
+				
+					while(it.hasNext()){
+						
+						DoctorIF aux2=it.getNext();
+						
+						if(!listaAretornar.contains(aux2)){
+							
+							listaAretornar.insert(aux2, listaAretornar.size()+1);
+						}
+					}
+		}
+		
+		return listaAretornar;
+		
+		
 	}
 
 	
@@ -142,8 +183,8 @@ public class DoctorC implements DoctorIF {
 		return list;
 	}
 
-	private boolean beInList(CollectionIF<DoctorIF> collection, DoctorIF doctor) {
-	IteratorIF<DoctorIF> it=collection.iterator();
+	private boolean beInList(CollectionIF<DoctorIF> students, DoctorIF doctor) {
+	IteratorIF<DoctorIF> it=students.iterator();
 		
 		while(it.hasNext()){
 			
@@ -193,15 +234,31 @@ public class DoctorC implements DoctorIF {
 	//metodo para que no de error en la linea 60 de ParseCScenarario
 	public CollectionIF<DoctorIF> getSupervisors(){
 		
+		ListIF<DoctorIF> list=new List<DoctorIF>();
 		
-		return null;
+		IteratorIF<DoctorIF> it=academiac.getSupervisors().iterator();
+		
+		while(it.hasNext()){
+			
+			DoctorIF doc=it.getNext();
+			
+			if(beInList(doc.getStudents(), this)){
+				
+				list.insert(doc, list.size()+1);			
+			}
+		}
+		
+		
+		
+		return list;
 	}
 
 	
 	void addStudent(DoctorIF newDoctor){
 		
-		students.insert(newDoctor, students.size()+1);
+		((List<DoctorIF>) students).insert(newDoctor, students.size()+1);
 	}
+
 
 
 }

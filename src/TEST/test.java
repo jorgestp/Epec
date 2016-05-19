@@ -93,10 +93,36 @@ public class test {
 		}
 		
 		
+		System.out.println();
+		System.out.println();		
 		
 		
+		ListIF<DoctorIF> lista=(ListIF<DoctorIF>) doctor5.getSupervisors();
 		
+		IteratorIF<DoctorIF> it5=lista.iterator();
 		
+		while(it5.hasNext()){
+			
+			DoctorIF aux=it5.getNext();
+			
+			System.out.println("-" + aux.getId());
+		}
+		
+		System.out.println();
+		
+		System.out.println();
+		
+		ListIF<DoctorIF> antecesores=(ListIF<DoctorIF>) founder.getDescendants(2);
+		
+	IteratorIF<DoctorIF> it6=antecesores.iterator();
+		
+		System.out.println("Los antecesores del doctor ; " + founder.getId());
+		while(it6.hasNext()){
+			
+			DoctorIF aux=it6.getNext();
+			
+			System.out.println("-" + aux.getId());
+		}
 		
 		
 		

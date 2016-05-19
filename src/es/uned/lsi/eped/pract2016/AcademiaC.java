@@ -8,7 +8,7 @@ import es.uned.lsi.eped.DataStructures.*;
 
 public class AcademiaC implements AcademiaIF {
 
-	private ListIF<DoctorIF> supervisors;
+	private CollectionIF<DoctorIF> supervisors;
 	private int size;
 	
 	
@@ -18,7 +18,7 @@ public class AcademiaC implements AcademiaIF {
 	public AcademiaC(DoctorIF founder){
 		
 		supervisors= new List<DoctorIF>();
-		supervisors.insert(founder, supervisors.size()+1);
+		((List<DoctorIF>) supervisors).insert(founder, supervisors.size()+1);
 		size=1;
 		
 	}
@@ -72,7 +72,7 @@ public class AcademiaC implements AcademiaIF {
 	//FUNCIONA
 	public DoctorIF getFounder() {
 	
-		DoctorIF doc= supervisors.get(1);
+		DoctorIF doc= ((List<DoctorIF>) supervisors).get(1);
 		
 		return doc;
 	}
@@ -130,7 +130,7 @@ public class AcademiaC implements AcademiaIF {
 		if(!beInSupervisors(newDoctor)){
 			
 			
-			supervisors.insert(newDoctor, supervisors.size()+1);
+			((List<DoctorIF>) supervisors).insert(newDoctor, supervisors.size()+1);
 			
 		}
 		
@@ -198,7 +198,7 @@ public class AcademiaC implements AcademiaIF {
 
 
 	public ListIF<DoctorIF> getSupervisors() {
-		return supervisors;
+		return (ListIF<DoctorIF>) supervisors;
 	}
 
 
