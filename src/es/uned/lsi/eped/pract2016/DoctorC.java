@@ -74,7 +74,7 @@ public class DoctorC implements DoctorIF {
 	}
 	
 	
-	@Override
+	//FUNCIONA
 	public CollectionIF<DoctorIF> getAncestors(int generations) {
 		
 		return antece(this, generations, new List<DoctorIF>());
@@ -115,7 +115,7 @@ public class DoctorC implements DoctorIF {
 				}
 				
 			}
-			return reverseRepetitions(list);
+			return list;
 		}
 		
 		
@@ -130,40 +130,52 @@ public class DoctorC implements DoctorIF {
 
 	
 	public CollectionIF<DoctorIF> getDescendants(int generations) {
-
-		ListIF<DoctorIF> listaAretornar = new List<DoctorIF>();
 		
-		if(generations==0){
-			return listaAretornar;
-		}
-		if(generations==1){
-			
-			listaAretornar=(ListIF<DoctorIF>) this.students;
-			return listaAretornar;
-		}
-		
-		IteratorIF<DoctorIF> it=students.iterator();
-		while(it.hasNext()){
-			DoctorIF aux=it.getNext();
-			ListIF<DoctorIF> list2 = (ListIF<DoctorIF>) aux.getDescendants(generations-1);
-			
-				IteratorIF<DoctorIF> it2=list2.iterator();
-				
-					while(it2.hasNext()){
-						
-						DoctorIF aux2=it2.getNext();
-						
-						if(!listaAretornar.contains(aux2)){
-							
-							listaAretornar.insert(aux2, listaAretornar.size()+1);
-						}
-					}
-		}
-		
-		return listaAretornar;
-		
-		
+		return descen(this, generations, new List<DoctorIF>());
 	}
+	
+	
+	private CollectionIF<DoctorIF> descen(DoctorIF doc, int gene, ListIF<DoctorIF> list){
+		
+		if(gene==1){
+			
+			IteratorIF<DoctorIF> it = doc.getStudents().iterator();
+			while(it.hasNext()){
+				
+				DoctorIF aux=it.getNext();
+				list.insert(aux, list.size()+1);
+			}
+			
+			return list;
+		}
+		
+		
+		
+		IteratorIF<DoctorIF> it = doc.getStudents().iterator();
+		
+			while(it.hasNext()){
+				
+				DoctorIF aux=it.getNext();
+				
+//					ListIF<DoctorIF> l=(ListIF<DoctorIF>) aux.getStudents();
+//					IteratorIF<DoctorIF> it2 = l.iterator();
+//					while(it.hasNext()){
+//						
+//						DoctorIF d=it.getNext();
+//						
+//						list.insert(d, list.size()+1);
+//
+//										}
+					list.insert(aux, list.size()+1);
+					list = (ListIF<DoctorIF>) descen(aux, gene-1, list);
+				}
+			
+		
+		
+		return reverseRepetitions(list);
+	}
+	
+	
 
 	
 	//Funciona

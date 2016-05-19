@@ -116,7 +116,7 @@ public class test {
 		
 	IteratorIF<DoctorIF> it6=antecesores.iterator();
 		
-		System.out.println("Los antecesores del doctor ; " + doctor6.getId());
+		System.out.println("Los antecesores del doctor ; " + doctor4.getId());
 		while(it6.hasNext()){
 			
 			DoctorIF aux=it6.getNext();
@@ -125,6 +125,22 @@ public class test {
 		}
 		
 		
+		System.out.println();
+		
+		System.out.println();
+
+		ListIF<DoctorIF> descendentes= new List<DoctorIF>();
+		
+		 descendentes=(ListIF<DoctorIF>) doctor2.getDescendants(1);
+	
+		IteratorIF<DoctorIF> itera= descendentes.iterator();
+		
+		while(itera.hasNext()){
+			
+			DoctorIF aux = itera.getNext();
+			
+			System.out.println("-" + aux.getId());
+		}
 		
 		
 		
