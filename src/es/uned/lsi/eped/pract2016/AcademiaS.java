@@ -76,7 +76,7 @@ public class AcademiaS implements AcademiaIF {
 	}
 
 	
-	//funciona
+
 	public DoctorIF getDoctor(int id) {
 		
 		
@@ -93,7 +93,7 @@ public class AcademiaS implements AcademiaIF {
 	}
 	
 		private DoctorIF find(ListIF<TreeIF<DoctorIF>> list, int id){
-			//No funciona bien el find este. Ya añade bien a la academia.
+			
 			DoctorIF doc=null;
 
 			IteratorIF<TreeIF<DoctorIF>> it=list.iterator();
@@ -133,7 +133,7 @@ public class AcademiaS implements AcademiaIF {
 		return size;
 	}
 
-	//FUNCIONA
+	
 	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
 		
 			encuentra(GetTree(), newDoctor, supervisor);
@@ -183,7 +183,7 @@ public class AcademiaS implements AcademiaIF {
 	
 
 
-	//FUNCIONA
+	
 	public void addSupervision(DoctorIF student, DoctorIF supervisor) {
 		
 		
@@ -222,7 +222,7 @@ public class AcademiaS implements AcademiaIF {
 		}
 	
 	
-	@Override
+	
 	public IteratorIF<DoctorIF> iterator() {
 	
 		return null;

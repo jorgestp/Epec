@@ -69,7 +69,7 @@ public class AcademiaC implements AcademiaIF {
 
 
 
-	//FUNCIONA
+
 	public DoctorIF getFounder() {
 	
 		DoctorIF doc= ((List<DoctorIF>) supervisors).get(1);
@@ -81,7 +81,6 @@ public class AcademiaC implements AcademiaIF {
 
 
 
-	//FUNCIONA
 	public DoctorIF getDoctor(int id) {
 		
 	IteratorIF<DoctorIF> it = supervisors.iterator();
@@ -105,9 +104,9 @@ public class AcademiaC implements AcademiaIF {
 	
 
 
-	//FUNCIONA
+
 	public int size() {
-		// TODO Auto-generated method stub
+		
 		return size;
 	}
 
@@ -115,7 +114,7 @@ public class AcademiaC implements AcademiaIF {
 
 
 
-	//FUNCIONA!
+
 	public void addDoctor(DoctorIF newDoctor, DoctorIF supervisor) {
 	
 		DoctorC sup=(DoctorC) findDoctor(supervisor);
@@ -158,7 +157,7 @@ public class AcademiaC implements AcademiaIF {
 
 
 
-	//FUNCIONA PERO NO SE SI ES LO QUE SE PIDE O NO.
+	
 	public void addSupervision(DoctorIF student, DoctorIF supervisor) {
 		
 

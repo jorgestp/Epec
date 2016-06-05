@@ -48,7 +48,7 @@ public class DoctorS implements DoctorIF {
 		return academia;
 	}
 
-	//FUNCIONA
+
 	public DoctorS getSupervisor(){
 	
 		TreeIF<DoctorIF> c=academia.GetTree();
@@ -106,7 +106,7 @@ public class DoctorS implements DoctorIF {
 		return false;
 	}
 
-	//FUNCIONA PERO METE DOS VECES UN ANTECESOR
+
 
 	public CollectionIF<DoctorIF> getAncestors(int generations) {
 
@@ -160,7 +160,6 @@ public class DoctorS implements DoctorIF {
 	
 
 
-	//FUNCIONA
 	public CollectionIF<DoctorIF> getStudents() {
 		
 		ListIF<DoctorIF> students=new List<DoctorIF>();
@@ -185,7 +184,7 @@ public class DoctorS implements DoctorIF {
 				
 		
 
-	//FUNCIONA
+
 	public CollectionIF<DoctorIF> getDescendants(int generations) {
 		
 		SetIF<DoctorIF> conj=new Set<DoctorIF>();
@@ -250,7 +249,7 @@ public class DoctorS implements DoctorIF {
 
 	
 
-	 //FUNCIONA
+	
 	public CollectionIF<DoctorIF> getSiblings() {
 		
 		TreeIF<DoctorIF> padre=busqueda(academia.GetTree(), this);

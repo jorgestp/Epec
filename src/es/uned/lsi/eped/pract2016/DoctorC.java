@@ -68,13 +68,13 @@ public class DoctorC implements DoctorIF {
 
 
 
-	//FUNCIONA
+	
 	public CollectionIF<DoctorIF> getStudents() {
 		return students;
 	}
 	
 	
-	//FUNCIONA
+
 	public CollectionIF<DoctorIF> getAncestors(int generations) {
 		
 		return antece(this, generations, new List<DoctorIF>());
@@ -97,7 +97,7 @@ public class DoctorC implements DoctorIF {
 		}
 		else{
 			
-			//recorro academia
+		
 			ListIF<DoctorIF> sup=academiac.getSupervisors();
 			
 			IteratorIF<DoctorIF> it=sup.iterator();
@@ -105,7 +105,7 @@ public class DoctorC implements DoctorIF {
 			while(it.hasNext()){
 				
 				DoctorIF aux=it.getNext();
-//				ese doctor no tiene academia.. Pero si yo le he pasado la academia a todos cuando los creo!!!
+
 				if(beInList(aux.getStudents(), doc)){
 					list.insert(aux, list.size()+1);
 					list=(ListIF<DoctorIF>) antece(aux, generation-1, list);
@@ -128,7 +128,7 @@ public class DoctorC implements DoctorIF {
 	
 	
 
-	//FUNCIONA
+
 	public CollectionIF<DoctorIF> getDescendants(int generations) {
 		
 		return descen(this, generations, new List<DoctorIF>());
@@ -157,15 +157,7 @@ public class DoctorC implements DoctorIF {
 				
 				DoctorIF aux=it.getNext();
 				
-//					ListIF<DoctorIF> l=(ListIF<DoctorIF>) aux.getStudents();
-//					IteratorIF<DoctorIF> it2 = l.iterator();
-//					while(it.hasNext()){
-//						
-//						DoctorIF d=it.getNext();
-//						
-//						list.insert(d, list.size()+1);
-//
-//										}
+
 					list.insert(aux, list.size()+1);
 					list = (ListIF<DoctorIF>) descen(aux, gene-1, list);
 				}
@@ -178,7 +170,6 @@ public class DoctorC implements DoctorIF {
 	
 
 	
-	//Funciona
 	public CollectionIF<DoctorIF> getSiblings() {
 		
 		ListIF<DoctorIF> list = new List<DoctorIF>();
@@ -281,14 +272,14 @@ public class DoctorC implements DoctorIF {
 		
 	}
 
-	//FUNCIONA
+
 	public int getId() {
 		// TODO Auto-generated method stub
 		return id;
 	}
 	
 	
-	//metodo para que no de error en la linea 60 de ParseCScenarario
+
 	public CollectionIF<DoctorIF> getSupervisors(){
 		
 		ListIF<DoctorIF> list=new List<DoctorIF>();
